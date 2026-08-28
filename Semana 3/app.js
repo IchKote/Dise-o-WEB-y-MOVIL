@@ -22,47 +22,65 @@ const respuestaAPI = {
 
 function mostrarDisciplinas() {
     let contenedor = document.getElementById("Disciplinas");
-    if (!contenedor) return;
+    
+    if (!contenedor) {
+        console.error("No se encontró el contenedor con id 'Disciplinas'");
+        return;
+    }
 
     contenedor.innerHTML = "";
 
     respuestaAPI.data.forEach(disciplina => {
+        // Columna de Bootstrap
         let col = document.createElement("div");
         col.setAttribute("class", "col-md-4 mb-4");
 
+        // Tarjeta
         let card = document.createElement("div");
         card.setAttribute("class", "card h-100 bg-dark text-white border-secondary shadow");
 
+        // Determinamos la posición según la foto de cada disciplina
+        let posicionFoto = "center";
+        if (disciplina.Nombre === "Football") {
+            posicionFoto = "top";      // (para que no corte los cabezas)
+        } else if (disciplina.Nombre === "Basketball") {
+            posicionFoto = "bottom";   // (para que no corte los pies)
+        }
+
+        // Imagen
         let img = document.createElement("img");
         img.setAttribute("src", disciplina.imagen);
         img.setAttribute("class", "card-img-top");
         img.setAttribute("alt", disciplina.Nombre);
-        img.setAttribute("style", "height: 200px; object-fit: cover;");
+        img.setAttribute("style", `height: 200px; object-fit: cover; object-position: ${posicionFoto};`);
 
+        // Cuerpo de la tarjeta
         let cardBody = document.createElement("div");
         cardBody.setAttribute("class", "card-body d-flex flex-column");
-        
+
+        // Título
         let titulo = document.createElement("h5");
         titulo.setAttribute("class", "card-title");
-        titulo.setAttribute("style", "color: #02F5A1; font-weight: bold;");
+        titulo.setAttribute("style", "color: #23A9BD; font-weight: bold;");
         titulo.innerText = disciplina.Nombre;
 
+        // Descripción
         let desc = document.createElement("p");
         desc.setAttribute("class", "card-text text-light");
         desc.innerText = disciplina.Descripcion;
 
-
+        // Ensamblado
         cardBody.appendChild(titulo);
-        cardBody.appendChild(descripcion);
+        cardBody.appendChild(desc);
 
         card.appendChild(img);
         card.appendChild(cardBody);
 
         col.appendChild(card);
-
         contenedor.appendChild(col);
     });
 
+    // Ocultar botón tras cargar
     let botonCargar = document.getElementById("btn-cargar");
     if (botonCargar) {
         botonCargar.style.display = "none";

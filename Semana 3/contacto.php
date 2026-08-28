@@ -7,7 +7,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
     </head>
-    <body style="background-color: #07191E; color: #ffffff;">
+    <body style="background-color: #010310; color: #ffffff;">
         <!-- navbar -->
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <div class="container-fluid">
@@ -38,11 +38,11 @@
                         </li>
                     </ul>
                 </div>
-                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal"style="background-color: #02F5A1; color: #07191E">Acceder</button>
+                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#myModal"style="background-color: #23A9BD; color: #010310">Acceder</button>
             </div>
         </nav>
         <!-- container -->
-        <div class="container-fluid" style="background-color: #07191E; color: #ffffff;">
+        <div class="container-fluid" style="background-color: #010310; color: #ffffff;">
             <form action="empresa.php">
                 <div class="mb-3 mt-3">
                     <label for="email" class="form-label">Email:</label>
@@ -50,14 +50,14 @@
                 </div>
                 <label for="comment">Comentarios:</label>
                 <textarea class="form-control" id="comment" name="comment" rows="5"></textarea>
-                <button type=button class="btn btn-primary mt-1"style="background-color: #02F5A1; color: #07191E" >Enviar</button>
+                <button type=button class="btn btn-primary mt-1"style="background-color: #23A9BD; color: #010310" >Enviar</button>
             </form>
         </div>
         <!-- footer -->
         <div class="container-fluid bg-dark">
             <div class="row">
                 <div class="col-4"></div>
-                <div class="col-4" style="color: #02F5A1"><strong>Jose-Tomas Guzman y Daniela Jara</strong></div>
+                <div class="col-4" style="color: #23A9BD"><strong>Jose-Tomas Guzman y Daniela Jara</strong></div>
                 <div class="col-4"></div>
             </div>
         </div>
