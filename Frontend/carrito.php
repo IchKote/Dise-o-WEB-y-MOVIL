@@ -6,51 +6,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <style>
-            .btn-efecto {
-                transition: all 0.3s ease-in-out;
-            }
-            .btn-efecto:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 15px rgba(35, 169, 189, 0.4) !important;
-                background-color: #8CE1EE !important;
-                color: #010310 !important;
-            }
-        </style>
+        <link rel="stylesheet" href="css/estilos.css">
     </head>
-    <body style="background-color: #010310; color: #ffffff;">
+    <body>
 
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-dark bg-dark px-3 position-fixed w-100" style="z-index: 1050;">
+        <!-- NAVBAR RESPONSIVO -->
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md px-3 position-fixed w-100" style="z-index: 1050;">
             <div class="container-fluid d-flex justify-content-between align-items-center">
-                <button class="btn text-white px-3 py-2 btn-efecto" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" style="background-color: #23A9BD; color: #010310 !important;">
-                    <i class="bi bi-list fs-4"></i>
-                </button>
                 <a class="navbar-brand fw-bold fs-3 mx-0" href="index.php" style="color: #8CE1EE;">Masala</a>
-                <a href="carta.php" class="btn btn-outline-light btn-efecto" style="border-color: #23A9BD; color: #8CE1EE;">
-                    <i class="bi bi-arrow-left"></i> Volver a la Carta
-                </a>
-            </div>
-        </nav>
+                
+                <button class="navbar-toggler btn-efecto border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #23A9BD;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <!-- MENÚ LATERAL -->
-        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="menuLateral" style="background-color: #010310 !important;">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" style="color: #23A9BD;">Menú</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body d-flex flex-column justify-content-between">
-                <ul class="navbar-nav fs-5">
-                    <li class="nav-item mb-2"><a class="nav-link text-white" href="index.php">INICIO</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link text-white" href="carta.php">CARTA</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link text-white" href="ubicacion.php">UBICACIÓN</a></li>
-                </ul>
-                <div class="d-flex flex-column gap-2 border-top border-secondary pt-3">
-                    <a href="ubicacion.php" class="text-light text-decoration-none"><i class="bi bi-geo-alt-fill" style="color: #23A9BD;"></i> Santiago, Chile</a>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav fs-5 align-items-md-center gap-md-3">
+                        <li class="nav-item"><a class="nav-link text-white" href="index.php">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="carta.php">CARTA</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="ubicacion.php">UBICACIÓN</a></li>
+                        <li class="nav-item ms-md-3" id="navAuthItem">
+                            <!-- Este contenido lo reemplaza auth.js según si hay sesión iniciada -->
+                            <button type="button" class="btn btn-outline-light btn-efecto px-3 py-2" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                                <i class="bi bi-person-circle me-1"></i> Acceder
+                            </button>
+                        </li>
+                        <li class="nav-item ms-md-3">
+                            <a href="carta.php" class="btn btn-outline-light btn-efecto" style="border-color: #23A9BD; color: #8CE1EE;">
+                                <i class="bi bi-arrow-left"></i> Volver a la Carta
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
+        </nav>
 
         <div style="height: 80px;"></div>
 
@@ -65,7 +53,7 @@
 
                 <div class="mb-3 border-top border-secondary pt-3">
                     <label class="form-label fw-bold" style="color: #23A9BD;">Tipo de Entrega:</label>
-                    <div class="d-flex gap-4">
+                    <div class="d-flex gap-4 flex-wrap">
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="tipoEntrega" id="retiro" value="retiro" checked onclick="cambiarTipoEntrega()">
                             <label class="form-check-label" for="retiro">Retiro en Local ($0)</label>
@@ -82,6 +70,16 @@
                     <input type="text" class="form-control bg-dark text-white border-secondary" id="direccion" placeholder="Ej. Av. Providencia 123">
                 </div>
 
+                <!-- CÓDIGO DE DESCUENTO -->
+                <div class="mb-3 border-top border-secondary pt-3">
+                    <label for="codigoDescuento" class="form-label fw-bold" style="color: #23A9BD;">¿Tienes un código de descuento?</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-dark text-white border-secondary" id="codigoDescuento" placeholder="Ej. MASALA20">
+                        <button class="btn btn-outline-warning fw-bold" type="button" onclick="aplicarDescuento()">Aplicar</button>
+                    </div>
+                    <small id="mensajeDescuento" class="text-success mt-1 d-none">¡Descuento del 20% aplicado con éxito!</small>
+                </div>
+
                 <div class="border-top border-secondary pt-3 mb-4">
                     <div class="d-flex justify-content-between mb-2"><span>Subtotal:</span><span id="lbl-subtotal">$0</span></div>
                     <div class="d-flex justify-content-between mb-2"><span>Costo Envío:</span><span id="lbl-envio">$0</span></div>
@@ -95,77 +93,51 @@
         </div>
 
         <!-- FOOTER -->
-        <div class="container-fluid bg-dark py-3">
+        <div class="container-fluid bg-dark py-3 mt-5">
             <div class="row text-center"><div class="col-12" style="color: #23A9BD;"><strong>Jose-Tomas Guzman y Daniela Jara</strong></div></div>
         </div>
 
-        <script>
-            function cargarCarrito() {
-                let carrito = JSON.parse(localStorage.getItem("carrito_restaurante")) || [];
-                let lista = document.getElementById("lista-carrito");
-                let subtotalElem = document.getElementById("lbl-subtotal");
-                let envioElem = document.getElementById("lbl-envio");
-                let totalElem = document.getElementById("lbl-total");
-                
-                lista.innerHTML = "";
-                if (carrito.length === 0) {
-                    lista.innerHTML = '<li class="list-group-item bg-transparent text-muted border-secondary text-center">Tu carro está vacío</li>';
-                    subtotalElem.innerText = "$0"; envioElem.innerText = "$0"; totalElem.innerText = "$0";
-                    return;
-                }
-
-                let subtotal = 0;
-                carrito.forEach((item, index) => {
-                    let totalItem = item.precio * item.cantidad;
-                    subtotal += totalItem;
-                    let li = document.createElement("li");
-                    li.className = "list-group-item bg-transparent text-white border-secondary d-flex justify-content-between align-items-center px-0 py-3";
-                    li.innerHTML = `
-                        <div class="d-flex align-items-center">
-                            <div>
-                                <strong>${item.nombre}</strong><br>
-                                <span class="badge bg-secondary mt-1">Cantidad: x ${item.cantidad}</span>
+        <!-- MODAL DE LOGIN / REGISTRO (Va aquí, oculto por defecto) -->
+        <div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-white border-secondary">
+                    <div class="modal-header border-secondary">
+                        <h5 class="modal-title fw-bold" id="tituloModalAuth" style="color: #8CE1EE;">Iniciar Sesión</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="formAuth" onsubmit="procesarAuth(event)">
+                            <div id="campoNombre" class="mb-3" style="display: none;">
+                                <label for="authNombre" class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="authNombre" placeholder="Ej. Juan Pérez">
                             </div>
-                        </div>
-                        <div class="d-flex align-items-center gap-3">
-                            <span class="fw-bold text-warning">$${totalItem.toLocaleString()}</span>
-                            <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarItem(${index})"><i class="bi bi-trash"></i></button>
-                        </div>
-                    `;
-                    lista.appendChild(li);
-                });
+                            <div class="mb-3">
+                                <label for="authEmail" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control bg-dark text-white border-secondary" id="authEmail" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="authPass" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control bg-dark text-white border-secondary" id="authPass" required>
+                            </div>
+                            <button type="submit" class="btn w-100 fw-bold btn-efecto mb-3" style="background-color: #23A9BD; color: #010310;" id="btnAuthSubmit">
+                                Entrar
+                            </button>
+                            <div class="text-center">
+                                <small class="text-light">
+                                    <span id="textoAuthSwitch">¿No tienes cuenta?</span> 
+                                    <a href="#" class="fw-bold text-warning text-decoration-none" onclick="alternarAuth()">¡Regístrate aquí!</a>
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                let esDelivery = document.getElementById("delivery").checked;
-                let costoEnvio = esDelivery ? 2000 : 0;
-                subtotalElem.innerText = "$" + subtotal.toLocaleString();
-                envioElem.innerText = "$" + costoEnvio.toLocaleString();
-                totalElem.innerText = "$" + (subtotal + costoEnvio).toLocaleString();
-            }
-
-            function cambiarTipoEntrega() {
-                let esDelivery = document.getElementById("delivery").checked;
-                document.getElementById("campo-direccion").style.display = esDelivery ? "block" : "none";
-                cargarCarrito();
-            }
-
-            function eliminarItem(index) {
-                let carrito = JSON.parse(localStorage.getItem("carrito_restaurante")) || [];
-                carrito.splice(index, 1);
-                localStorage.setItem("carrito_restaurante", JSON.stringify(carrito));
-                cargarCarrito();
-            }
-
-            function finalizarCompra() {
-                let carrito = JSON.parse(localStorage.getItem("carrito_restaurante")) || [];
-                if (carrito.length === 0) { alert("Tu carrito está vacío."); return; }
-                if (document.getElementById("delivery").checked && !document.getElementById("direccion").value) {
-                    alert("Por favor ingresa la dirección de entrega."); return;
-                }
-                alert("¡Pedido confirmado con éxito!");
-                localStorage.removeItem("carrito_restaurante");
-                window.location.href = "carta.php";
-            }
-            cargarCarrito();
-        </script>
+        <!-- SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/carrito.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

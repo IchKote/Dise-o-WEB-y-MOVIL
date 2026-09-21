@@ -6,85 +6,53 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <style>
-            .btn-efecto {
-                transition: all 0.3s ease-in-out;
-            }
-            .btn-efecto:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 6px 15px rgba(35, 169, 189, 0.4) !important;
-                background-color: #8CE1EE !important;
-                color: #010310 !important;
-            }
-            .grid-hero-item {
-                position: relative;
-                background-size: cover;
-                background-position: center;
-                background-color: #010310;
-            }
-            .grid-hero-item::before {
-                content: "";
-                position: absolute;
-                top: 0; left: 0; width: 100%; height: 100%;
-                background-color: rgba(1, 3, 16, 0.55);
-                z-index: 1;
-            }
-            .grid-hero-content {
-                position: relative;
-                z-index: 2;
-            }
-            .box-alta { min-height: 420px; }
-            .box-mediana { min-height: 340px; }
-            .box-baja { min-height: 260px; }
-            @media (min-width: 768px) {
-                .row-desigual { display: flex; align-items: stretch; }
-            }
-        </style>
+        <link rel="stylesheet" href="css/estilos.css">
     </head>
-    <body style="background-color: #010310; color: #ffffff;">
+    <body>
 
-        <!-- NAVBAR -->
-        <nav class="navbar navbar-dark bg-dark px-3 position-fixed w-100" style="z-index: 1050;">
+        <!-- NAVBAR RESPONSIVO -->
+        <nav class="navbar navbar-dark bg-dark navbar-expand-md px-3 position-fixed w-100" style="z-index: 1050;">
             <div class="container-fluid d-flex justify-content-between align-items-center">
-                <button class="btn text-white px-3 py-2 btn-efecto" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" style="background-color: #23A9BD; color: #010310 !important;">
-                    <i class="bi bi-list fs-4"></i>
-                </button>
                 <a class="navbar-brand fw-bold fs-3 mx-0" href="index.php" style="color: #8CE1EE;">Masala</a>
-                <div style="width: 45px;" class="d-block d-md-none"></div>
+                
+                <button class="navbar-toggler btn-efecto border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #23A9BD;">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav fs-5 align-items-md-center gap-md-3">
+                        <li class="nav-item"><a class="nav-link text-white fw-bold" href="index.php">INICIO</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="carta.php">CARTA</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="ubicacion.php">UBICACIÓN</a></li>
+                        <li class="nav-item ms-md-3" id="navAuthItem">
+                            <!-- Este contenido lo reemplaza auth.js según si hay sesión iniciada -->
+                            <button type="button" class="btn btn-outline-light btn-efecto px-3 py-2" data-bs-toggle="modal" data-bs-target="#modalLogin">
+                                <i class="bi bi-person-circle me-1"></i> Acceder
+                            </button>
+                        </li>
+                        <li class="nav-item ms-md-3">
+                            <a href="carrito.php" class="btn position-relative fw-bold px-3 py-2 btn-efecto shadow-sm" style="background-color: #23A9BD; color: #010310;">
+                                <i class="bi bi-cart3 fs-5 me-1"></i> Carrito
+                                <span id="contador-carrito" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
-        <!-- MENÚ LATERAL (OFFCANVAS) -->
-        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="menuLateral" style="background-color: #010310 !important;">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" style="color: #23A9BD;">Menú</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body d-flex flex-column justify-content-between">
-                <ul class="navbar-nav fs-5">
-                    <li class="nav-item mb-2"><a class="nav-link text-white fw-bold" href="index.php">INICIO</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link text-white" href="carta.php">CARTA</a></li>
-                    <li class="nav-item mb-2"><a class="nav-link text-white" href="ubicacion.php">UBICACIÓN</a></li>
-                </ul>
-                <div class="d-flex flex-column gap-2 border-top border-secondary pt-3">
-                    <a href="ubicacion.php" class="text-light text-decoration-none"><i class="bi bi-geo-alt-fill" style="color: #23A9BD;"></i> Santiago, Chile</a>
-                </div>
-            </div>
-        </div>
-
         <div style="height: 70px;"></div>
 
-        <!-- CUADRÍCULA ASIMÉTRICA -->
+        <!-- CUADRÍCULA ASIMÉTRICA RESPONSIVA -->
         <div class="container-fluid p-0">
             <div class="row g-0 row-desigual">
-                <div class="col-md-4 d-flex flex-column">
+                <div class="col-12 col-md-4 d-flex flex-column">
                     <div class="grid-hero-item box-baja d-flex align-items-center justify-content-center text-center p-4 border-bottom border-end border-secondary" style="background-image: url('img/plato1.jpg');"></div>
                     <div class="grid-hero-item box-alta d-flex align-items-center justify-content-center text-center p-4 border-end border-secondary" style="background-image: url('img/pollito.jpg');"></div>
                 </div>
-                <div class="col-md-4 d-flex flex-column">
+                <div class="col-12 col-md-4 d-flex flex-column">
                     <div class="grid-hero-item box-alta d-flex flex-column align-items-center justify-content-center text-center p-4 border-bottom border-end border-secondary" style="background-image: url('img/bebestible.jpg');">
-                        <div class="grid-hero-content">
+                        <div class="grid-hero-content px-2">
                             <span class="text-uppercase small text-light opacity-75" style="letter-spacing: 2px;">BIENVENIDOS</span>
                             <h1 class="display-4 fw-bold text-white mt-1 mb-0" style="letter-spacing: 1px;">Masala</h1>
                         </div>
@@ -98,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 d-flex flex-column">
+                <div class="col-12 col-md-4 d-flex flex-column">
                     <div class="grid-hero-item box-mediana d-flex align-items-center justify-content-center text-center p-4 border-bottom border-secondary" style="background-image: url('img/pollito.jpg');"></div>
                     <div class="grid-hero-item box-mediana d-flex align-items-center justify-content-center text-center p-4" style="background-image: url('img/bebestible.jpg');"></div>
                 </div>
@@ -109,9 +77,9 @@
         <div class="container my-5">
             <h2 class="text-center mb-4 fw-bold" style="color: #8CE1EE;">Lo más vendido</h2>
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
-                        <img src="img/pollito.jpg" class="card-img-top" alt="Plato 1" style="height: 220px; object-fit: cover;">
+                        <img src="img/pollito.jpg" class="card-img-top w-100" alt="Plato 1" style="height: 220px; object-fit: cover;">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
                                 <h5 class="card-title fw-bold" style="color: #23A9BD;">Chicken Tikka Masala</h5>
@@ -124,9 +92,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
-                        <img src="img/plato1.jpg" class="card-img-top" alt="Plato 2" style="height: 220px; object-fit: cover;">
+                        <img src="img/plato1.jpg" class="card-img-top w-100" alt="Plato 2" style="height: 220px; object-fit: cover;">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
                                 <h5 class="card-title fw-bold" style="color: #23A9BD;">Pan Naan al Ajo</h5>
@@ -139,9 +107,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
-                        <img src="img/bebestible.jpg" class="card-img-top" alt="Bebestible" style="height: 220px; object-fit: cover;">
+                        <img src="img/bebestible.jpg" class="card-img-top w-100" alt="Bebestible" style="height: 220px; object-fit: cover;">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
                                 <h5 class="card-title fw-bold" style="color: #23A9BD;">Limonada Menta Jengibre</h5>
@@ -158,8 +126,51 @@
         </div>
 
         <!-- FOOTER -->
-        <div class="container-fluid bg-dark py-3">
+        <div class="container-fluid bg-dark py-3 mt-5">
             <div class="row text-center"><div class="col-12" style="color: #23A9BD;"><strong>Jose-Tomas Guzman y Daniela Jara</strong></div></div>
         </div>
+
+        <!-- MODAL DE LOGIN / REGISTRO (Va aquí, oculto por defecto) -->
+        <div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-dark text-white border-secondary">
+                    <div class="modal-header border-secondary">
+                        <h5 class="modal-title fw-bold" id="tituloModalAuth" style="color: #8CE1EE;">Iniciar Sesión</h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <form id="formAuth" onsubmit="procesarAuth(event)">
+                            <div id="campoNombre" class="mb-3" style="display: none;">
+                                <label for="authNombre" class="form-label">Nombre Completo</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary" id="authNombre" placeholder="Ej. Juan Pérez">
+                            </div>
+                            <div class="mb-3">
+                                <label for="authEmail" class="form-label">Correo Electrónico</label>
+                                <input type="email" class="form-control bg-dark text-white border-secondary" id="authEmail" placeholder="correo@ejemplo.com" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="authPass" class="form-label">Contraseña</label>
+                                <input type="password" class="form-control bg-dark text-white border-secondary" id="authPass" required>
+                            </div>
+                            <button type="submit" class="btn w-100 fw-bold btn-efecto mb-3" style="background-color: #23A9BD; color: #010310;" id="btnAuthSubmit">
+                                Entrar
+                            </button>
+                            <div class="text-center">
+                                <small class="text-light">
+                                    <span id="textoAuthSwitch">¿No tienes cuenta?</span> 
+                                    <a href="#" class="fw-bold text-warning text-decoration-none" onclick="alternarAuth()">¡Regístrate aquí!</a>
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/carrito.js"></script>
+        <script src="js/auth.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
