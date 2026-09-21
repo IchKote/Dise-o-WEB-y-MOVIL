@@ -28,7 +28,7 @@ function cambiarCantCarta(id, delta) {
 }
 
 // --- Agregar una bebida directamente al carrito, sin pasar por el modal ---
-function agregarBebidaCarta(nombre, precio, id) {
+function agregarBebidaCarta(nombre, precio, id, imagen) {
     let cantidad = cantidadesCarta[id] || 1;
 
     agregarAlCarrito({
@@ -36,7 +36,8 @@ function agregarBebidaCarta(nombre, precio, id) {
         precio: precio,
         cantidad: cantidad,
         observaciones: "",
-        extras: []
+        extras: [],
+        imagen: imagen || ""
     });
 
     // Reiniciamos el contador visual de la tarjeta a 1
@@ -111,7 +112,8 @@ function agregarAlCarroPersonalizado() {
         precio: precioUnitario,
         cantidad: 1,
         observaciones: observaciones,
-        extras: extrasSeleccionados.map(e => ({ nombre: e.nombre, cantidad: e.cantidad }))
+        extras: extrasSeleccionados.map(e => ({ nombre: e.nombre, cantidad: e.cantidad })),
+        imagen: productoActual.img || ""
     };
 
     agregarAlCarrito(item);

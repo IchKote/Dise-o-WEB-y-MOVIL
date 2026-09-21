@@ -79,7 +79,7 @@
             <div class="row g-4">
                 <div class="col-12 col-md-4">
                     <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
-                        <img src="img/pollito.jpg" class="card-img-top w-100" alt="Plato 1" style="height: 220px; object-fit: cover;">
+                        <img src="img/plato1.jpg" class="card-img-top w-100" alt="Chicken Tikka Masala" style="height: 220px; object-fit: cover;">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
                                 <h5 class="card-title fw-bold" style="color: #23A9BD;">Chicken Tikka Masala</h5>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
-                        <img src="img/plato1.jpg" class="card-img-top w-100" alt="Plato 2" style="height: 220px; object-fit: cover;">
+                        <img src="img/naan.jpg" class="card-img-top w-100" alt="Pan Naan al Ajo" style="height: 220px; object-fit: cover;">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
                                 <h5 class="card-title fw-bold" style="color: #23A9BD;">Pan Naan al Ajo</h5>
@@ -109,7 +109,7 @@
                 </div>
                 <div class="col-12 col-md-4">
                     <div class="card bg-dark text-white border-secondary h-100 shadow-sm">
-                        <img src="img/bebestible.jpg" class="card-img-top w-100" alt="Bebestible" style="height: 220px; object-fit: cover;">
+                        <img src="img/bebestible.jpg" class="card-img-top w-100" alt="Limonada Menta Jengibre" style="height: 220px; object-fit: cover;">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <div>
                                 <h5 class="card-title fw-bold" style="color: #23A9BD;">Limonada Menta Jengibre</h5>

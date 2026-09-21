@@ -121,10 +121,10 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
-                    <div class="card bg-dark text-white border-secondary p-3 h-100 card-producto" onclick="abrirPersonalizador('Pan Naan al Ajo', 2500, 'img/bebestible.jpg')">
+                    <div class="card bg-dark text-white border-secondary p-3 h-100 card-producto" onclick="abrirPersonalizador('Pan Naan al Ajo', 2500, 'img/naan.jpg')">
                         <div class="row g-0 align-items-center">
                             <div class="col-4">
-                                <img src="img/bebestible.jpg" alt="Naan" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
+                                <img src="img/naan.jpg" alt="Naan" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
                             </div>
                             <div class="col-8 ps-3">
                                 <h5 class="fw-bold mb-1" style="color: #23A9BD;">Pan Naan al Ajo</h5>
@@ -155,7 +155,7 @@
                                         <span id="carta-cant-limonada" class="fw-bold fs-6">1</span>
                                         <button type="button" class="btn btn-outline-light btn-sm rounded-circle" style="width: 28px; height: 28px; padding:0;" onclick="cambiarCantCarta('limonada', 1)">+</button>
                                     </div>
-                                    <button class="btn btn-sm fw-bold px-3 btn-efecto" style="background-color: #23A9BD; color: #010310;" onclick="agregarBebidaCarta('Limonada Menta Jengibre', 3000, 'limonada')">Agregar</button>
+                                    <button class="btn btn-sm fw-bold px-3 btn-efecto" style="background-color: #23A9BD; color: #010310;" onclick="agregarBebidaCarta('Limonada Menta Jengibre', 3000, 'limonada', 'img/bebestible.jpg')">Agregar</button>
                                 </div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                     <div class="card bg-dark text-white border-secondary p-3 h-100">
                         <div class="row g-0 align-items-center">
                             <div class="col-4">
-                                <img src="img/bebestible.jpg" alt="Bebida Lata" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
+                                <img src="img/lata.jpg" alt="Bebida Lata" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
                             </div>
                             <div class="col-8 ps-3">
                                 <h5 class="fw-bold mb-1" style="color: #23A9BD;">Bebida Lata 350ml</h5>
@@ -177,7 +177,7 @@
                                         <span id="carta-cant-bebidaLata" class="fw-bold fs-6">1</span>
                                         <button type="button" class="btn btn-outline-light btn-sm rounded-circle" style="width: 28px; height: 28px; padding:0;" onclick="cambiarCantCarta('bebidaLata', 1)">+</button>
                                     </div>
-                                    <button class="btn btn-sm fw-bold px-3 btn-efecto" style="background-color: #23A9BD; color: #010310;" onclick="agregarBebidaCarta('Bebida Lata 350ml', 2100, 'bebidaLata')">Agregar</button>
+                                    <button class="btn btn-sm fw-bold px-3 btn-efecto" style="background-color: #23A9BD; color: #010310;" onclick="agregarBebidaCarta('Bebida Lata 350ml', 2100, 'bebidaLata', 'img/lata.jpg')">Agregar</button>
                                 </div>
                             </div>
                         </div>
