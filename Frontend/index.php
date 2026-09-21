@@ -48,7 +48,7 @@
             <div class="row g-0 row-desigual">
                 <div class="col-12 col-md-4 d-flex flex-column">
                     <div class="grid-hero-item box-baja d-flex align-items-center justify-content-center text-center p-4 border-bottom border-end border-secondary" style="background-image: url('img/plato1.jpg');"></div>
-                    <div class="grid-hero-item box-alta d-flex align-items-center justify-content-center text-center p-4 border-end border-secondary" style="background-image: url('img/pollito.jpg');"></div>
+                    <div class="grid-hero-item box-alta d-flex align-items-center justify-content-center text-center p-4 border-end border-secondary" style="background-image: url('img/samosas.jpg');"></div>
                 </div>
                 <div class="col-12 col-md-4 d-flex flex-column">
                     <div class="grid-hero-item box-alta d-flex flex-column align-items-center justify-content-center text-center p-4 border-bottom border-end border-secondary" style="background-image: url('img/bebestible.jpg');">
@@ -57,7 +57,7 @@
                             <h1 class="display-4 fw-bold text-white mt-1 mb-0" style="letter-spacing: 1px;">Masala</h1>
                         </div>
                     </div>
-                    <div class="grid-hero-item box-baja d-flex flex-column align-items-center justify-content-center text-center p-4 border-end border-secondary" style="background-image: url('img/plato1.jpg');">
+                    <div class="grid-hero-item box-baja d-flex flex-column align-items-center justify-content-center text-center p-4 border-end border-secondary" style="background-image: url('img/especias.jpg');">
                         <div class="grid-hero-content">
                             <p class="text-light mb-2 small fw-bold">Curry & Naan</p>
                             <a href="carta.php" class="btn btn-light fw-bold px-4 py-2 shadow text-dark rounded-0 btn-efecto" style="background-color: #ffffff; border: none;">
@@ -67,8 +67,8 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-4 d-flex flex-column">
-                    <div class="grid-hero-item box-mediana d-flex align-items-center justify-content-center text-center p-4 border-bottom border-secondary" style="background-image: url('img/pollito.jpg');"></div>
-                    <div class="grid-hero-item box-mediana d-flex align-items-center justify-content-center text-center p-4" style="background-image: url('img/bebestible.jpg');"></div>
+                    <div class="grid-hero-item box-mediana d-flex align-items-center justify-content-center text-center p-4 border-bottom border-secondary" style="background-image: url('img/Curry.jpg');"></div>
+                    <div class="grid-hero-item box-mediana d-flex align-items-center justify-content-center text-center p-4" style="background-image: url('img/naan.jpg');"></div>
                 </div>
             </div>
         </div>

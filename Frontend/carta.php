@@ -91,7 +91,7 @@
                     <div class="card bg-dark text-white border-secondary p-3 h-100 card-producto" onclick="abrirPersonalizador('Samosas Vegetales', 4000, 'img/pollito.jpg')">
                         <div class="row g-0 align-items-center">
                             <div class="col-4">
-                                <img src="img/pollito.jpg" alt="Samosas" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
+                                <img src="img/samosas.jpg" alt="Samosas" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
                             </div>
                             <div class="col-8 ps-3">
                                 <h5 class="fw-bold mb-1" style="color: #23A9BD;">Samosas Vegetales</h5>
@@ -110,7 +110,7 @@
                     <div class="card bg-dark text-white border-secondary p-3 h-100 card-producto" onclick="abrirPersonalizador('Chicken Tikka Masala', 9500, 'img/plato1.jpg')">
                         <div class="row g-0 align-items-center">
                             <div class="col-4">
-                                <img src="img/plato1.jpg" alt="Curry" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
+                                <img src="img/Curry.jpg" alt="Curry" class="img-fluid rounded w-100" style="height: 100px; object-fit: cover;">
                             </div>
                             <div class="col-8 ps-3">
                                 <h5 class="fw-bold mb-1" style="color: #23A9BD;">Chicken Tikka Masala</h5>
@@ -155,7 +155,7 @@
                                         <span id="carta-cant-limonada" class="fw-bold fs-6">1</span>
                                         <button type="button" class="btn btn-outline-light btn-sm rounded-circle" style="width: 28px; height: 28px; padding:0;" onclick="cambiarCantCarta('limonada', 1)">+</button>
                                     </div>
-                                    <button class="btn btn-sm fw-bold px-3 btn-efecto" style="background-color: #23A9BD; color: #010310;" onclick="agregarBebidaCarta('Limonada Menta Jengibre', 3000, 'limonada', 'img/bebestible.jpg')">Agregar</button>
+                                    <button class="btn btn-sm fw-bold px-3 btn-efecto" style="background-color: #23A9BD; color: #010310;" onclick="agregarBebidaCarta('Limonada Menta Jengibre', 3000, 'limonada', 'img/limona3.jpg')">Agregar</button>
                                 </div>
                             </div>
                         </div>
