@@ -13,7 +13,9 @@
         <!-- NAVBAR RESPONSIVO -->
         <nav class="navbar navbar-dark bg-dark navbar-expand-md px-3 position-fixed w-100" style="z-index: 1050;">
             <div class="container-fluid d-flex justify-content-between align-items-center">
-                <a class="navbar-brand fw-bold fs-3 mx-0" href="index.php" style="color: #8CE1EE;">Masala</a>
+                <a class="navbar-brand d-flex align-items-center mx-0" href="index.php">
+                    <img src="img/logo.webp" alt="Masala" style="height: 44px; width: 44px; object-fit: cover; border-radius: 10px;">
+                </a>
                 
                 <button class="navbar-toggler btn-efecto border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #23A9BD;">
                     <span class="navbar-toggler-icon"></span>
