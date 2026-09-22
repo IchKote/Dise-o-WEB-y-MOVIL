@@ -28,6 +28,24 @@ Masala es una interfaz web frontend responsiva y moderna diseñada para un resta
 
 ---
 
+## Cuentas de Prueba (Autenticación)
+
+El sistema cuenta con dos perfiles preconfigurados para probar las funcionalidades de inicio de sesión y roles de usuario:
+
+* **Administrador:**
+  * **Correo:** `admin@masala.cl`
+  * **Contraseña:** `admin123`
+  * **Rol:** Administrador
+
+* **Cliente:**
+  * **Correo:** `cliente@masala.cl`
+  * **Contraseña:** `cliente123`
+  * **Rol:** Cliente
+
+*(También es posible registrar nuevas cuentas directamente desde la interfaz utilizando el modal de acceso).*
+
+---
+
 ## Tecnologias Utilizadas
 
 * **HTML5 / CSS3**
