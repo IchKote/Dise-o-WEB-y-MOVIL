@@ -4,6 +4,13 @@ Masala es una interfaz web frontend responsiva y moderna diseñada para un resta
 
 ---
 
+## Enlace del Proyecto en Vivo
+
+Puedes visitar y probar la página desplegada en el siguiente enlace:
+* **[GitHub Pages - Masala](https://ichkote.github.io/Dise-o-WEB-y-MOVIL/index.html)**
+
+---
+
 ## Caracteristicas Principales
 
 * **Diseno Moderno y Coherente:** Interfaz con temática oscura basada en una paleta de colores cuidadosamente seleccionada (`#010310`, `#23A9BD`, `#8CE1EE`, `#F0F6F8`) y botones con efectos de interacción (*hover*).
