@@ -1,0 +1,12 @@
+# Vault
+services:
+  vault:
+    image: hashicorp/vault:1.17
+    container_name: vault-masala
+    ports:
+      - "8200:8200"
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: root-token-masala
+      VAULT_DEV_LISTEN_ADDRESS: 0.0.0.0:8200
+    cap_add:
+      - IPC_LOCK
