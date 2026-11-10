@@ -1,0 +1,129 @@
+classDiagram
+direction TB
+
+class Usuario {
+  +id: string
+  +nombre: string
+  +email: string
+  +rol: cliente|admin
+  -passwordHash: string
+  -fallos: int
+  -bloqueadoHasta: datetime
+}
+class Sesion {
+  -tokenHash: string
+  +userId: string
+  +exp: datetime
+}
+class Cliente {
+  +id: string
+  +nombre: string
+  +email: string
+  +telefono: string
+  +direcciones: string[]
+}
+class Producto {
+  +id: string
+  +nombre: string
+  +categoria: entradas|platos|bebestibles|extras
+  +precio: int
+  +stock: int
+  +activo: bool
+}
+class Reserva {
+  +orderId: string
+  +estado: RESERVADA|LIBERADA
+}
+class Pedido {
+  +id: string
+  +userId: string
+  +estado: EstadoPedido
+  +tipo: retiro|delivery
+  +direccion: string
+  +subtotal: int
+  +descuento: int
+  +envio: int
+  +total: int
+  +codigo: string
+  +notas: string
+}
+class DetallePedido {
+  +productId: string
+  +nombre: string
+  +precioUnitario: int
+  +cantidad: int
+  +subtotal: int
+}
+class Pago {
+  +orderId: string
+  +userId: string
+  +monto: int
+  +metodo: tarjeta|transferencia
+  +estado: APROBADO|RECHAZADO|REEMBOLSADO
+  +ref: string
+  -firma: string
+}
+
+class AuthService {
+  <<service>>
+  S01 registrar()
+  S02 iniciarSesion()
+  S03 cerrarSesion()
+  S04 consultarCuenta()
+}
+class ClientsService {
+  <<service>>
+  S05 consultarMiPerfil()
+  S06 reemplazarMiPerfil()
+  S07 listarClientes()
+  S08 consultarCliente()
+}
+class InventoryService {
+  <<service>>
+  S09 consultarCatalogo()
+  S10 consultarProducto()
+  S11 crearProducto()
+  S12 reemplazarProducto()
+  S13 modificarProducto()
+  S14 retirarProducto()
+}
+class OrdersService {
+  <<service>>
+  S15 crearPedido()
+  S16 pagarPedido()
+  S17 cancelarPedido()
+  S18 listarPedidos()
+  S19 consultarPedido()
+  S20 avanzarEstado()
+}
+class PaymentsService {
+  <<service>>
+  S21 listarPagos()
+  S22 consultarComprobante()
+}
+class GraphQLGateway {
+  <<service>>
+  S23 agregarPedidos()
+}
+
+Usuario "1" *-- "0..*" Sesion : abre
+Usuario "1" -- "1" Cliente : tiene perfil
+Cliente "1" -- "0..*" Pedido : realiza
+Pedido "1" *-- "1..*" DetallePedido : contiene
+DetallePedido "0..*" -- "1" Producto : copia nombre y precio de
+Pedido "1" -- "1" Reserva : reserva stock mediante
+Reserva "0..*" -- "1..*" Producto : descuenta stock de
+Pedido "1" -- "0..1" Pago : se cobra con
+
+AuthService ..> Usuario
+AuthService ..> Sesion
+ClientsService ..> Cliente
+InventoryService ..> Producto
+InventoryService ..> Reserva
+OrdersService ..> Pedido
+OrdersService ..> DetallePedido
+PaymentsService ..> Pago
+GraphQLGateway ..> OrdersService
+GraphQLGateway ..> InventoryService
+GraphQLGateway ..> PaymentsService
+GraphQLGateway ..> ClientsService

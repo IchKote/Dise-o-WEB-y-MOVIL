@@ -1,0 +1,30 @@
+﻿orders-1  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+orders-1  |   File "/usr/local/lib/python3.13/site-packages/httpx/_client.py", line 1730, in _send_single_request
+orders-1  |     response = await transport.handle_async_request(request)
+orders-1  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+orders-1  |   File "/usr/local/lib/python3.13/site-packages/httpx/_transports/default.py", line 393, in handle_async_request
+orders-1  |     with map_httpcore_exceptions():
+orders-1  |          ~~~~~~~~~~~~~~~~~~~~~~~^^
+orders-1  |   File "/usr/local/lib/python3.13/contextlib.py", line 162, in __exit__
+orders-1  |     self.gen.throw(value)
+orders-1  |     ~~~~~~~~~~~~~~^^^^^^^
+orders-1  |   File "/usr/local/lib/python3.13/site-packages/httpx/_transports/default.py", line 118, in map_httpcore_exceptions
+orders-1  |     raise mapped_exc(message) from exc
+orders-1  | httpx.ConnectError: [Errno -3] Temporary failure in name resolution
+orders-1  | 
+orders-1  | The above exception was the direct cause of the following exception:
+orders-1  | 
+orders-1  | Traceback (most recent call last):
+orders-1  |   File "/usr/local/lib/python3.13/site-packages/starlette/routing.py", line 661, in lifespan
+orders-1  |     async with self.lifespan_context(app) as maybe_state:
+orders-1  |                ~~~~~~~~~~~~~~~~~~~~~^^^^^
+orders-1  |   File "/usr/local/lib/python3.13/contextlib.py", line 214, in __aenter__
+orders-1  |     return await anext(self.gen)
+orders-1  |            ^^^^^^^^^^^^^^^^^^^^^
+orders-1  |   File "/app/masala_common/app.py", line 20, in lifespan
+orders-1  |     await secrets_store.load_secrets(service)
+orders-1  |   File "/app/masala_common/secrets_store.py", line 43, in load_secrets
+orders-1  |     raise SecretsUnavailable("No fue posible leer Vault") from error
+orders-1  | masala_common.secrets_store.SecretsUnavailable: No fue posible leer Vault
+orders-1  | 
+orders-1  | ERROR:    Application startup failed. Exiting.

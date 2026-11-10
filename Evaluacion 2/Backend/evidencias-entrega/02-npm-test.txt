@@ -1,0 +1,28 @@
+﻿
+> masala-graphql@1.0.0 test
+> node --test test/*.test.js
+
+error interno: connection string mongodb://usuario:clave@host
+✔ agrupa lecturas: 1 llamada por servicio, sin N+1 (47.3671ms)
+✔ se reenvía la identidad verificada, no la que diga el cliente (8.4118ms)
+✔ solo el gateway puede llamar al servicio (0.1645ms)
+✔ la identidad solo se arma con rol válido (0.0979ms)
+✔ sin token: pedidos exige login (3.1534ms)
+✔ campo cliente solo para administrador (autorización por campo) (5.5692ms)
+✔ falla parcial: pagos caído devuelve pedidos con pago null y un error (3.3134ms)
+✔ mutación: error de negocio llega con código y detalle (2.9521ms)
+✔ mutaciones por rol (5.1803ms)
+✔ límite de profundidad (5.3132ms)
+✔ introspección desactivada por defecto (3.2615ms)
+✔ errores inesperados no filtran detalles (1.802ms)
+✔ límite de costo: demasiados campos (2.2227ms)
+✔ paginación acotada a 50 (1.6575ms)
+✔ me responde con la identidad del gateway y sin llamar a auth (1.7287ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 436.9333

@@ -1,0 +1,16 @@
+{
+  "name": "masala-graphql",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "dependencies": {
+    "@apollo/server": "5.5.1",
+    "dataloader": "2.2.3",
+    "graphql": "16.15.0",
+    "graphql-depth-limit": "1.1.0"
+  }
+}

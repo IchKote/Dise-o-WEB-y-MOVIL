@@ -1,0 +1,10 @@
+﻿Resumen de la ejecución - 2026-11-08 15:45:22
+OK    pytest - se esperaba 49 passed
+OK    npm test - se esperaban 15 pruebas pasando y 0 fallos
+OK    docker compose up - el gateway responde en http://localhost:8000/api/products
+OK    Secretos desde Vault - 6 servicios leyeron sus secretos (se esperaban 6 o más)
+OK    Validaciones sobre Docker - se esperaban 20/20 OK
+OK    Aislamiento de red - los servicios privados no son accesibles desde el equipo
+OK    Persistencia - los pedidos son los mismos después de recrear los contenedores
+OK    Vault detenido - orders se niega a arrancar (SecretsUnavailable)
+OK    Restauración - el sistema vuelve a responder

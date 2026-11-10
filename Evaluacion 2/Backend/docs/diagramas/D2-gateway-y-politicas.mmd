@@ -1,0 +1,90 @@
+classDiagram
+direction TB
+
+class ApiGateway {
+  +puerto: 8000
+  +limiteGeneral: 120 por minuto
+  +limiteLogin: 10 por minuto
+  +maxCuerpo: 64 KB
+  +atender(solicitud)
+}
+class RouteDefinition {
+  +metodo: string
+  +patron: regex
+  +servicioDestino: string
+  +rutaInterna: string
+  +acceso: publica|opcional|requerida
+}
+class AuthenticationPolicy {
+  +esquema: Bearer
+  +verificarToken(token)
+}
+class AuthorizationPolicy {
+  +roles: set
+  +permitir(identidad)
+}
+class RateLimitPolicy {
+  +ventana: 60 s
+  +limitado(ip)
+}
+class ServiceTarget {
+  +nombre: string
+  +urlBase: string
+  +timeout: 5 s
+  +llamar(metodo, ruta, identidad)
+}
+class SecretProvider {
+  <<interface>>
+  +cargarSecretos(sistema)
+}
+class VaultProvider {
+  +direccion: string
+  +tokenPorSistema: string
+}
+class AuthService {
+  <<service>>
+  +verificar(token)
+}
+class GraphQLGateway {
+  <<service>>
+  +puerto: 8100 privado
+  +ejecutar(consulta, identidad)
+}
+class Schema {
+  +tipos: Query, Mutation
+  +profundidadMax: 6
+  +camposMax: 60
+}
+class Resolver {
+  +campo: string
+  +autorizar(identidad)
+}
+class DataLoader {
+  +maxLote: 50
+  +cargar(ids)
+}
+class ServiceAdapter {
+  +servicio: string
+  +llamar(ruta, params)
+}
+class BackendPrivado {
+  <<service>>
+  clients inventory orders payments
+}
+
+ApiGateway "1" *-- "1..*" RouteDefinition : tabla de rutas
+ApiGateway "1" *-- "1" RateLimitPolicy
+ApiGateway "1" o-- "1" AuthenticationPolicy
+RouteDefinition "0..*" --> "0..1" AuthorizationPolicy : exige roles
+RouteDefinition "1..*" --> "1" ServiceTarget : apunta a
+ApiGateway ..> SecretProvider : obtiene credenciales
+SecretProvider <|.. VaultProvider
+AuthenticationPolicy ..> AuthService : consulta
+ServiceTarget ..> BackendPrivado : REST con X-Caller
+ServiceTarget ..> GraphQLGateway : POST /graphql con X-Caller
+GraphQLGateway "1" *-- "1" Schema
+Schema "1" *-- "1..*" Resolver
+Resolver "1" --> "0..*" DataLoader : agrupa lecturas
+DataLoader "1" --> "1" ServiceAdapter
+ServiceAdapter ..> BackendPrivado : REST con X-Caller
+GraphQLGateway ..> SecretProvider : obtiene credenciales

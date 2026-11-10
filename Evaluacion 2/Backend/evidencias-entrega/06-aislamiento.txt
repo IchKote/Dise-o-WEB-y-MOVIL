@@ -1,0 +1,7 @@
+﻿puerto 8100 : sin respuesta (correcto)
+puerto 8001 : sin respuesta (correcto)
+puerto 9001 : sin respuesta (correcto)
+puerto 9002 : sin respuesta (correcto)
+puerto 9003 : sin respuesta (correcto)
+puerto 9004 : sin respuesta (correcto)
+puerto 9005 : sin respuesta (correcto)

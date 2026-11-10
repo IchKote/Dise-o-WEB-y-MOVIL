@@ -1,0 +1,110 @@
+
+> masala-graphql@1.0.0 test
+> node --test test/*.test.js
+
+TAP version 13
+# error interno: connection string mongodb://usuario:clave@host
+# Subtest: agrupa lecturas: 1 llamada por servicio, sin N+1
+ok 1 - agrupa lecturas: 1 llamada por servicio, sin N+1
+  ---
+  duration_ms: 64.737985
+  type: 'test'
+  ...
+# Subtest: se reenvía la identidad verificada, no la que diga el cliente
+ok 2 - se reenvía la identidad verificada, no la que diga el cliente
+  ---
+  duration_ms: 13.691034
+  type: 'test'
+  ...
+# Subtest: solo el gateway puede llamar al servicio
+ok 3 - solo el gateway puede llamar al servicio
+  ---
+  duration_ms: 0.361229
+  type: 'test'
+  ...
+# Subtest: la identidad solo se arma con rol válido
+ok 4 - la identidad solo se arma con rol válido
+  ---
+  duration_ms: 0.321719
+  type: 'test'
+  ...
+# Subtest: sin token: pedidos exige login
+ok 5 - sin token: pedidos exige login
+  ---
+  duration_ms: 12.118425
+  type: 'test'
+  ...
+# Subtest: campo cliente solo para administrador (autorización por campo)
+ok 6 - campo cliente solo para administrador (autorización por campo)
+  ---
+  duration_ms: 17.258606
+  type: 'test'
+  ...
+# Subtest: falla parcial: pagos caído devuelve pedidos con pago null y un error
+ok 7 - falla parcial: pagos caído devuelve pedidos con pago null y un error
+  ---
+  duration_ms: 9.482667
+  type: 'test'
+  ...
+# Subtest: mutación: error de negocio llega con código y detalle
+ok 8 - mutación: error de negocio llega con código y detalle
+  ---
+  duration_ms: 8.323624
+  type: 'test'
+  ...
+# Subtest: mutaciones por rol
+ok 9 - mutaciones por rol
+  ---
+  duration_ms: 20.993967
+  type: 'test'
+  ...
+# Subtest: límite de profundidad
+ok 10 - límite de profundidad
+  ---
+  duration_ms: 16.818461
+  type: 'test'
+  ...
+# Subtest: introspección desactivada por defecto
+ok 11 - introspección desactivada por defecto
+  ---
+  duration_ms: 14.59418
+  type: 'test'
+  ...
+# Subtest: errores inesperados no filtran detalles
+ok 12 - errores inesperados no filtran detalles
+  ---
+  duration_ms: 11.453934
+  type: 'test'
+  ...
+# Subtest: límite de costo: demasiados campos
+ok 13 - límite de costo: demasiados campos
+  ---
+  duration_ms: 19.179538
+  type: 'test'
+  ...
+# Subtest: paginación acotada a 50
+ok 14 - paginación acotada a 50
+  ---
+  duration_ms: 6.261796
+  type: 'test'
+  ...
+# Subtest: me responde con la identidad del gateway y sin llamar a auth
+ok 15 - me responde con la identidad del gateway y sin llamar a auth
+  ---
+  duration_ms: 4.525939
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 507.038159
+npm notice
+npm notice New major version of npm available! 10.9.9 -> 12.2.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.2
+npm notice To update run: npm install -g npm@12.2.2
+npm notice

@@ -1,0 +1,11 @@
+OK    catálogo público
+OK    sin token -> 401
+OK    registro -> 201
+OK    total 15200 + envío 2000 = 17200
+OK    pago -> PAGADO
+OK    admin avanza estado
+OK    cliente no administra productos -> 403
+OK    pedido ajeno -> 404
+OK    logout revoca token
+
+TODO OK

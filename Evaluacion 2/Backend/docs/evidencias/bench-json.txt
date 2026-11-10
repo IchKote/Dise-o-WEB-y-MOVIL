@@ -1,0 +1,2 @@
+carta de 30 productos     6764 bytes   ida y vuelta JSON:   80.2 us
+reserva de 10 ítems        589 bytes   ida y vuelta JSON:   10.2 us

@@ -1,0 +1,494 @@
+﻿**********************
+Inicio de la transcripción de Windows PowerShell
+Hora de inicio: 20261108154244
+Nombre de usuario: KOTE-PC\cote1
+Usuario RunAs: KOTE-PC\cote1
+Nombre de la configuración: 
+Máquina: KOTE-PC (Microsoft Windows NT 10.0.26300.0)
+Aplicación host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File scripts\evidencias_entrega.ps1
+Id. de proceso: 2052
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+=== 0. Limpieza previa ===
+
+=== 1. pytest ===
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+====================== 49 passed, 282 warnings in 16.88s ======================
+OK    pytest - se esperaba 49 passed
+
+=== 2. npm test (GraphQL) ===
+✔ paginación acotada a 50 (1.6575ms)
+✔ me responde con la identidad del gateway y sin llamar a auth (1.7287ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 436.9333
+OK    npm test - se esperaban 15 pruebas pasando y 0 fallos
+
+=== 3. docker compose up --build ===
+PS>ErrorTerminación(Invoke-WebRequest): "Se ha terminado la conexión: La conexión ha terminado de forma inesperada."
+NAME                  IMAGE                  COMMAND                   SERVICE     CREATED          STATUS                    PORTS
+backend-auth-1        backend-auth           "sh -c 'if [ \"$SERVI…"   auth        17 seconds ago   Up 10 seconds             8000/tcp
+backend-clients-1     backend-clients        "sh -c 'if [ \"$SERVI…"   clients     17 seconds ago   Up 10 seconds             8000/tcp
+backend-gateway-1     backend-gateway        "sh -c 'if [ \"$SERVI…"   gateway     17 seconds ago   Up 8 seconds              0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+backend-graphql-1     backend-graphql        "docker-entrypoint.s…"    graphql     17 seconds ago   Up 9 seconds              8100/tcp
+backend-inventory-1   backend-inventory      "sh -c 'if [ \"$SERVI…"   inventory   17 seconds ago   Up 9 seconds              8000/tcp
+backend-mongo-1       mongo:7                "docker-entrypoint.s…"    mongo       17 seconds ago   Up 16 seconds (healthy)   27017/tcp
+backend-orders-1      backend-orders         "sh -c 'if [ \"$SERVI…"   orders      17 seconds ago   Up 9 seconds              8000/tcp
+backend-payments-1    backend-payments       "sh -c 'if [ \"$SERVI…"   payments    17 seconds ago   Up 10 seconds             8000/tcp
+backend-vault-1       hashicorp/vault:1.17   "docker-entrypoint.s…"    vault       17 seconds ago   Up 16 seconds (healthy)   8200/tcp
+OK    docker compose up - el gateway responde en http://localhost:8000/api/products
+
+=== 4. Lectura de secretos desde Vault ===
+
+graphql-1     | GraphQL privado en :8100/graphql
+clients-1     | 2026-11-08 18:43:30,906 INFO HTTP Request: GET http://vault:8200/v1/secret/data/clients "HTTP/1.1 200 OK"
+clients-1     | INFO:     Application startup complete.
+auth-1        | 2026-11-08 18:43:31,110 INFO HTTP Request: GET http://vault:8200/v1/secret/data/auth "HTTP/1.1 200 OK"
+auth-1        | INFO:     Application startup complete.
+gateway-1     | 2026-11-08 18:43:32,269 INFO HTTP Request: GET http://vault:8200/v1/secret/data/gateway "HTTP/1.1 200 OK"
+gateway-1     | INFO:     Application startup complete.
+orders-1      | 2026-11-08 18:43:31,257 INFO HTTP Request: GET http://vault:8200/v1/secret/data/orders "HTTP/1.1 200 OK"
+orders-1      | INFO:     Application startup complete.
+vault-init-1  | Vault listo: secretos, políticas y tokens por sistema
+payments-1    | 2026-11-08 18:43:30,707 INFO HTTP Request: GET http://vault:8200/v1/secret/data/payments "HTTP/1.1 200 OK"
+payments-1    | INFO:     Application startup complete.
+inventory-1   | 2026-11-08 18:43:31,448 INFO HTTP Request: GET http://vault:8200/v1/secret/data/inventory "HTTP/1.1 200 OK"
+inventory-1   | INFO:     Application startup complete.
+
+
+OK    Secretos desde Vault - 6 servicios leyeron sus secretos (se esperaban 6 o más)
+
+=== 5. Validaciones sobre Vault y MongoDB reales ===
+OK    V9 Campo GraphQL restringido por rol: ['FORBIDDEN'], cliente null: True
+OK    V9b Mismo campo con rol admin: errores: 0
+OK    V9c Límite de profundidad: '' exceeds maximum operation depth of 6
+OK    V9d Límite de costo (campos): La consulta pide demasiados campos (máximo 60)
+OK    V9e Introspección desactivada: True
+OK    V10 Agregación orders + inventory + payments: estado PAGADO, pago APROBADO, disponible True
+
+20/20 validaciones OK
+OK    Validaciones sobre Docker - se esperaban 20/20 OK
+
+=== 6. Aislamiento de red ===
+PS>ErrorTerminación(Invoke-WebRequest): "La operación sobrepasó el tiempo de espera."
+>> ErrorTerminación(Invoke-WebRequest): "La operación sobrepasó el tiempo de espera."
+>> ErrorTerminación(Invoke-WebRequest): "La operación sobrepasó el tiempo de espera."
+>> ErrorTerminación(Invoke-WebRequest): "La operación sobrepasó el tiempo de espera."
+>> ErrorTerminación(Invoke-WebRequest): "La operación sobrepasó el tiempo de espera."
+>> ErrorTerminación(Invoke-WebRequest): "La operación sobrepasó el tiempo de espera."
+>> ErrorTerminación(Invoke-WebRequest): "La operación sobrepasó el tiempo de espera."
+puerto 8100 : sin respuesta (correcto)
+puerto 8001 : sin respuesta (correcto)
+puerto 9001 : sin respuesta (correcto)
+puerto 9002 : sin respuesta (correcto)
+puerto 9003 : sin respuesta (correcto)
+puerto 9004 : sin respuesta (correcto)
+puerto 9005 : sin respuesta (correcto)
+OK    Aislamiento de red - los servicios privados no son accesibles desde el equipo
+
+=== 7. Persistencia en MongoDB ===
+5 pedidos en http://localhost:8000
+ORD-7E478638 CANCELADO 6000
+ORD-AD29CF31 PENDIENTE_PAGO 2000
+ORD-B3BAE36A PAGADO 9500
+ORD-DF1BB452 CANCELADO 8500
+ORD-254D03CD EN_PREPARACION 25500
+docker :  Container backend-gateway-1 Stopping
+En C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\scripts\evidencias_entrega.ps1: 137 Carácter: 1
++ docker compose down 2>&1 | Out-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container backend-gateway-1 Stopping :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Container backend-gateway-1 Stopped
+ Container backend-gateway-1 Removing
+ Container backend-gateway-1 Removed
+ Container backend-graphql-1 Stopping
+ Container backend-payments-1 Stopping
+ Container backend-clients-1 Stopping
+ Container backend-auth-1 Stopping
+ Container backend-inventory-1 Stopping
+ Container backend-graphql-1 Stopped
+ Container backend-graphql-1 Removing
+ Container backend-graphql-1 Removed
+ Container backend-orders-1 Stopping
+ Container backend-clients-1 Stopped
+ Container backend-clients-1 Removing
+ Container backend-clients-1 Removed
+ Container backend-inventory-1 Stopped
+ Container backend-inventory-1 Removing
+ Container backend-inventory-1 Removed
+ Container backend-auth-1 Stopped
+ Container backend-auth-1 Removing
+ Container backend-auth-1 Removed
+ Container backend-payments-1 Stopped
+ Container backend-payments-1 Removing
+ Container backend-payments-1 Removed
+ Container backend-orders-1 Stopped
+ Container backend-orders-1 Removing
+ Container backend-orders-1 Removed
+ Container backend-vault-init-1 Stopping
+ Container backend-mongo-1 Stopping
+ Container backend-vault-init-1 Stopped
+ Container backend-vault-init-1 Removing
+ Container backend-vault-init-1 Removed
+ Container backend-vault-1 Stopping
+ Container backend-mongo-1 Stopped
+ Container backend-mongo-1 Removing
+ Container backend-mongo-1 Removed
+ Container backend-vault-1 Stopped
+ Container backend-vault-1 Removing
+ Container backend-vault-1 Removed
+ Network backend_publica Removing
+ Network backend_privada Removing
+ Network backend_publica Removed
+ Network backend_privada Removed
+docker :  Network backend_privada Creating
+En C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\scripts\evidencias_entrega.ps1: 138 Carácter: 1
++ docker compose up -d 2>&1 | Out-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Network backend_privada Creating :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Network backend_privada Creating
+ Network backend_publica Creating
+ Network backend_publica Creating
+ Network backend_publica Created
+ Network backend_publica Created
+ Network backend_privada Created
+ Network backend_privada Created
+ Container backend-vault-1 Creating
+ Container backend-mongo-1 Creating
+ Container backend-vault-1 Created
+ Container backend-vault-init-1 Creating
+ Container backend-mongo-1 Created
+ Container backend-vault-init-1 Created
+ Container backend-payments-1 Creating
+ Container backend-inventory-1 Creating
+ Container backend-auth-1 Creating
+ Container backend-clients-1 Creating
+ Container backend-orders-1 Creating
+ Container backend-orders-1 Created
+ Container backend-graphql-1 Creating
+ Container backend-payments-1 Created
+ Container backend-inventory-1 Created
+ Container backend-auth-1 Created
+ Container backend-clients-1 Created
+ Container backend-graphql-1 Created
+ Container backend-gateway-1 Creating
+ Container backend-gateway-1 Created
+ Container backend-vault-1 Starting
+ Container backend-mongo-1 Starting
+ Container backend-vault-1 Started
+ Container backend-vault-1 Waiting
+ Container backend-mongo-1 Started
+ Container backend-vault-1 Healthy
+ Container backend-vault-init-1 Starting
+ Container backend-vault-init-1 Started
+ Container backend-vault-init-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-mongo-1 Healthy
+ Container backend-mongo-1 Healthy
+ Container backend-clients-1 Starting
+ Container backend-auth-1 Starting
+ Container backend-mongo-1 Healthy
+ Container backend-payments-1 Starting
+ Container backend-mongo-1 Healthy
+ Container backend-orders-1 Starting
+ Container backend-mongo-1 Healthy
+ Container backend-inventory-1 Starting
+ Container backend-clients-1 Started
+ Container backend-auth-1 Started
+ Container backend-payments-1 Started
+ Container backend-orders-1 Started
+ Container backend-vault-init-1 Waiting
+ Container backend-inventory-1 Started
+ Container backend-vault-init-1 Exited
+ Container backend-graphql-1 Starting
+ Container backend-graphql-1 Started
+ Container backend-vault-init-1 Waiting
+ Container backend-vault-init-1 Exited
+ Container backend-gateway-1 Starting
+ Container backend-gateway-1 Started
+PS>ErrorTerminación(Invoke-WebRequest): "Se ha terminado la conexión: La conexión ha terminado de forma inesperada."
+5 pedidos en http://localhost:8000
+ORD-7E478638 CANCELADO 6000
+ORD-AD29CF31 PENDIENTE_PAGO 2000
+ORD-B3BAE36A PAGADO 9500
+ORD-DF1BB452 CANCELADO 8500
+ORD-254D03CD EN_PREPARACION 25500
+OK    Persistencia - los pedidos son los mismos después de recrear los contenedores
+
+=== 8. Vault detenido ===
+docker :  Container backend-vault-1 Stopping
+En C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\scripts\evidencias_entrega.ps1: 151 Carácter: 1
++ docker compose stop vault 2>&1 | Out-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container backend-vault-1 Stopping :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Container backend-vault-1 Stopped
+docker :  Container backend-orders-1 Restarting
+En C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\scripts\evidencias_entrega.ps1: 152 Carácter: 1
++ docker compose restart orders 2>&1 | Out-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container backend-orders-1 Restarting :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Container backend-orders-1 Started
+NAME                  IMAGE               COMMAND                   SERVICE     CREATED          STATUS                    PORTS
+backend-auth-1        backend-auth        "sh -c 'if [ \"$SERVI…"   auth        45 seconds ago   Up 38 seconds             8000/tcp
+backend-clients-1     backend-clients     "sh -c 'if [ \"$SERVI…"   clients     45 seconds ago   Up 38 seconds             8000/tcp
+backend-gateway-1     backend-gateway     "sh -c 'if [ \"$SERVI…"   gateway     45 seconds ago   Up 36 seconds             0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+backend-graphql-1     backend-graphql     "docker-entrypoint.s…"    graphql     45 seconds ago   Up 36 seconds             8100/tcp
+backend-inventory-1   backend-inventory   "sh -c 'if [ \"$SERVI…"   inventory   45 seconds ago   Up 37 seconds             8000/tcp
+backend-mongo-1       mongo:7             "docker-entrypoint.s…"    mongo       45 seconds ago   Up 44 seconds (healthy)   27017/tcp
+backend-orders-1      backend-orders      "sh -c 'if [ \"$SERVI…"   orders      45 seconds ago   Up Less than a second     8000/tcp
+backend-payments-1    backend-payments    "sh -c 'if [ \"$SERVI…"   payments    45 seconds ago   Up 37 seconds             8000/tcp
+orders-1  |            ^^^^^^^^^^^^^^^^^^^^^
+orders-1  |   File "/app/masala_common/app.py", line 20, in lifespan
+orders-1  |     await secrets_store.load_secrets(service)
+orders-1  |   File "/app/masala_common/secrets_store.py", line 43, in load_secrets
+orders-1  |     raise SecretsUnavailable("No fue posible leer Vault") from error
+orders-1  | masala_common.secrets_store.SecretsUnavailable: No fue posible leer Vault
+orders-1  |
+orders-1  | ERROR:    Application startup failed. Exiting.
+OK    Vault detenido - orders se niega a arrancar (SecretsUnavailable)
+
+=== 9. Restauración ===
+docker :  Container backend-gateway-1 Stopping
+En C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\scripts\evidencias_entrega.ps1: 166 Carácter: 1
++ docker compose down 2>&1 | Out-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container backend-gateway-1 Stopping :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Container backend-gateway-1 Stopped
+ Container backend-gateway-1 Removing
+ Container backend-gateway-1 Removed
+ Container backend-inventory-1 Stopping
+ Container backend-auth-1 Stopping
+ Container backend-graphql-1 Stopping
+ Container backend-clients-1 Stopping
+ Container backend-payments-1 Stopping
+ Container backend-graphql-1 Stopped
+ Container backend-graphql-1 Removing
+ Container backend-graphql-1 Removed
+ Container backend-orders-1 Stopping
+ Container backend-orders-1 Stopped
+ Container backend-orders-1 Removing
+ Container backend-orders-1 Removed
+ Container backend-inventory-1 Stopped
+ Container backend-inventory-1 Removing
+ Container backend-inventory-1 Removed
+ Container backend-auth-1 Stopped
+ Container backend-auth-1 Removing
+ Container backend-auth-1 Removed
+ Container backend-clients-1 Stopped
+ Container backend-clients-1 Removing
+ Container backend-clients-1 Removed
+ Container backend-payments-1 Stopped
+ Container backend-payments-1 Removing
+ Container backend-payments-1 Removed
+ Container backend-mongo-1 Stopping
+ Container backend-vault-init-1 Stopping
+ Container backend-vault-init-1 Stopped
+ Container backend-vault-init-1 Removing
+ Container backend-vault-init-1 Removed
+ Container backend-vault-1 Stopping
+ Container backend-vault-1 Stopped
+ Container backend-vault-1 Removing
+ Container backend-vault-1 Removed
+ Container backend-mongo-1 Stopped
+ Container backend-mongo-1 Removing
+ Container backend-mongo-1 Removed
+ Network backend_privada Removing
+ Network backend_publica Removing
+ Network backend_privada Removed
+ Network backend_publica Removed
+docker :  Network backend_publica Creating
+En C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\scripts\evidencias_entrega.ps1: 167 Carácter: 1
++ docker compose up -d 2>&1 | Out-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Network backend_publica Creating :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Network backend_privada Creating
+ Network backend_publica Creating
+ Network backend_privada Creating
+ Network backend_privada Created
+ Network backend_privada Created
+ Container backend-vault-1 Creating
+ Container backend-mongo-1 Creating
+ Network backend_publica Created
+ Network backend_publica Created
+ Container backend-vault-1 Created
+ Container backend-vault-init-1 Creating
+ Container backend-mongo-1 Created
+ Container backend-vault-init-1 Created
+ Container backend-orders-1 Creating
+ Container backend-inventory-1 Creating
+ Container backend-payments-1 Creating
+ Container backend-auth-1 Creating
+ Container backend-clients-1 Creating
+ Container backend-auth-1 Created
+ Container backend-inventory-1 Created
+ Container backend-payments-1 Created
+ Container backend-orders-1 Created
+ Container backend-graphql-1 Creating
+ Container backend-clients-1 Created
+ Container backend-graphql-1 Created
+ Container backend-gateway-1 Creating
+ Container backend-gateway-1 Created
+ Container backend-mongo-1 Starting
+ Container backend-vault-1 Starting
+ Container backend-mongo-1 Started
+ Container backend-vault-1 Started
+ Container backend-vault-1 Waiting
+ Container backend-vault-1 Healthy
+ Container backend-vault-init-1 Starting
+ Container backend-vault-init-1 Started
+ Container backend-mongo-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-mongo-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-vault-init-1 Waiting
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-vault-init-1 Exited
+ Container backend-mongo-1 Healthy
+ Container backend-mongo-1 Healthy
+ Container backend-orders-1 Starting
+ Container backend-payments-1 Starting
+ Container backend-mongo-1 Healthy
+ Container backend-auth-1 Starting
+ Container backend-mongo-1 Healthy
+ Container backend-inventory-1 Starting
+ Container backend-mongo-1 Healthy
+ Container backend-clients-1 Starting
+ Container backend-orders-1 Started
+ Container backend-vault-init-1 Waiting
+ Container backend-payments-1 Started
+ Container backend-auth-1 Started
+ Container backend-vault-init-1 Exited
+ Container backend-graphql-1 Starting
+ Container backend-inventory-1 Started
+ Container backend-clients-1 Started
+ Container backend-graphql-1 Started
+ Container backend-vault-init-1 Waiting
+ Container backend-vault-init-1 Exited
+ Container backend-gateway-1 Starting
+ Container backend-gateway-1 Started
+PS>ErrorTerminación(Invoke-WebRequest): "Se ha terminado la conexión: La conexión ha terminado de forma inesperada."
+NAME                  IMAGE                  COMMAND                   SERVICE     CREATED          STATUS                    PORTS
+backend-auth-1        backend-auth           "sh -c 'if [ \"$SERVI…"   auth        11 seconds ago   Up 4 seconds              8000/tcp
+backend-clients-1     backend-clients        "sh -c 'if [ \"$SERVI…"   clients     11 seconds ago   Up 4 seconds              8000/tcp
+backend-gateway-1     backend-gateway        "sh -c 'if [ \"$SERVI…"   gateway     11 seconds ago   Up 3 seconds              0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+backend-graphql-1     backend-graphql        "docker-entrypoint.s…"    graphql     11 seconds ago   Up 4 seconds              8100/tcp
+backend-inventory-1   backend-inventory      "sh -c 'if [ \"$SERVI…"   inventory   11 seconds ago   Up 4 seconds              8000/tcp
+backend-mongo-1       mongo:7                "docker-entrypoint.s…"    mongo       12 seconds ago   Up 10 seconds (healthy)   27017/tcp
+backend-orders-1      backend-orders         "sh -c 'if [ \"$SERVI…"   orders      11 seconds ago   Up 4 seconds              8000/tcp
+backend-payments-1    backend-payments       "sh -c 'if [ \"$SERVI…"   payments    11 seconds ago   Up 4 seconds              8000/tcp
+backend-vault-1       hashicorp/vault:1.17   "docker-entrypoint.s…"    vault       12 seconds ago   Up 10 seconds (healthy)   8200/tcp
+OK    Restauración - el sistema vuelve a responder
+docker :  Container backend-gateway-1 Stopping
+En C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\scripts\evidencias_entrega.ps1: 174 Carácter: 1
++ docker compose down 2>&1 | Out-Host
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container backend-gateway-1 Stopping :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+ Container backend-gateway-1 Stopped
+ Container backend-gateway-1 Removing
+ Container backend-gateway-1 Removed
+ Container backend-inventory-1 Stopping
+ Container backend-auth-1 Stopping
+ Container backend-graphql-1 Stopping
+ Container backend-payments-1 Stopping
+ Container backend-clients-1 Stopping
+ Container backend-graphql-1 Stopped
+ Container backend-graphql-1 Removing
+ Container backend-graphql-1 Removed
+ Container backend-orders-1 Stopping
+ Container backend-payments-1 Stopped
+ Container backend-payments-1 Removing
+ Container backend-clients-1 Stopped
+ Container backend-clients-1 Removing
+ Container backend-payments-1 Removed
+ Container backend-clients-1 Removed
+ Container backend-auth-1 Stopped
+ Container backend-auth-1 Removing
+ Container backend-auth-1 Removed
+ Container backend-orders-1 Stopped
+ Container backend-orders-1 Removing
+ Container backend-orders-1 Removed
+ Container backend-inventory-1 Stopped
+ Container backend-inventory-1 Removing
+ Container backend-inventory-1 Removed
+ Container backend-mongo-1 Stopping
+ Container backend-vault-init-1 Stopping
+ Container backend-vault-init-1 Stopped
+ Container backend-vault-init-1 Removing
+ Container backend-vault-init-1 Removed
+ Container backend-vault-1 Stopping
+ Container backend-mongo-1 Stopped
+ Container backend-mongo-1 Removing
+ Container backend-mongo-1 Removed
+ Container backend-vault-1 Stopped
+ Container backend-vault-1 Removing
+ Container backend-vault-1 Removed
+ Network backend_publica Removing
+ Network backend_privada Removing
+ Network backend_publica Removed
+ Network backend_privada Removed
+
+=== RESUMEN ===
+OK    pytest - se esperaba 49 passed
+OK    npm test - se esperaban 15 pruebas pasando y 0 fallos
+OK    docker compose up - el gateway responde en http://localhost:8000/api/products
+OK    Secretos desde Vault - 6 servicios leyeron sus secretos (se esperaban 6 o más)
+OK    Validaciones sobre Docker - se esperaban 20/20 OK
+OK    Aislamiento de red - los servicios privados no son accesibles desde el equipo
+OK    Persistencia - los pedidos son los mismos después de recrear los contenedores
+OK    Vault detenido - orders se niega a arrancar (SecretsUnavailable)
+OK    Restauración - el sistema vuelve a responder
+
+Registros y capturas en: C:\Users\cote1\Downloads\Entrega_Evaluacion2_Backend\Backend\evidencias-entrega
+**********************
+Fin de la transcripción de Windows PowerShell
+Hora de finalización: 20261108154522
+**********************

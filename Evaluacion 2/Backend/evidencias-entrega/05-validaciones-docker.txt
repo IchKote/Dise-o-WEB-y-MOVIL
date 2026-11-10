@@ -1,0 +1,22 @@
+﻿OK    V1 Acceso anónimo al catálogo: 200, campos: ['categoria', 'descripcion', 'disponible', 'id', 'imagen', 'nombre', 'precio']
+OK    V2 Operación protegida sin sesión: 401
+OK    V2b Token inventado: 401
+OK    V3 Administración con rol cliente: 403
+OK    V3b Cambiar estado de cocina como cliente: 403
+OK    V4 Consulta de pedido ajeno: 404, cuerpo: Pedido no encontrado
+OK    V4b Consulta de pedido propio: 200
+OK    V4c Pagar pedido ajeno: 404
+OK    V5 Acceso directo a servicios privados sin identidad autorizada: {'orders': ('sin puerto', 'sin puerto'), 'inventory': ('sin puerto', 'sin puerto'), 'payments': ('sin puerto', 'sin puerto'), 'clients': ('sin puerto', 'sin puerto'), 'auth': ('sin puerto', 'sin puerto')}
+OK    V5b Acceso directo al GraphQL Gateway: sin puerto
+OK    V6 Confirmar pago con datos alterados: 200, monto cobrado 9500, estado PAGADO
+OK    V6b Precio y total enviados por el navegador: 2000
+OK    V7 Pago duplicado: ref igual: True, cobros: 1
+OK    V8 Recuperación de stock tras pago rechazado: 99 -> 96 -> 99, pago 402
+OK    V9 Campo GraphQL restringido por rol: ['FORBIDDEN'], cliente null: True
+OK    V9b Mismo campo con rol admin: errores: 0
+OK    V9c Límite de profundidad: '' exceeds maximum operation depth of 6
+OK    V9d Límite de costo (campos): La consulta pide demasiados campos (máximo 60)
+OK    V9e Introspección desactivada: True
+OK    V10 Agregación orders + inventory + payments: estado PAGADO, pago APROBADO, disponible True
+
+20/20 validaciones OK

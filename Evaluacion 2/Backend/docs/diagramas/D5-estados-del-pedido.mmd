@@ -1,0 +1,10 @@
+stateDiagram-v2
+  [*] --> PENDIENTE_PAGO: crear (reserva stock)
+  PENDIENTE_PAGO --> PAGADO: pago aprobado
+  PENDIENTE_PAGO --> CANCELADO: pago rechazado, tiempo vencido (15 min) o cancelacion
+  PAGADO --> EN_PREPARACION: admin
+  PAGADO --> CANCELADO: dueno o admin (reembolso y repone stock)
+  EN_PREPARACION --> LISTO: admin
+  LISTO --> ENTREGADO: admin
+  ENTREGADO --> [*]
+  CANCELADO --> [*]

@@ -1,0 +1,24 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.18, pytest-9.2.0, pluggy-1.7.0
+rootdir: /home/claude/mio/Dise-o-WEB-y-MOVIL-main/Backend
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.16.0, asyncio-1.4.1.post1
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=function, asyncio_default_test_loop_scope=function
+collected 49 items
+
+tests/test_auth.py ..........                                            [ 20%]
+tests/test_catalogo.py .......                                           [ 34%]
+tests/test_pedidos.py .....................                              [ 77%]
+tests/test_seguridad.py ...........                                      [100%]
+
+=============================== warnings summary ===============================
+tests/test_auth.py: 14 warnings
+tests/test_catalogo.py: 36 warnings
+tests/test_pedidos.py: 211 warnings
+tests/test_seguridad.py: 21 warnings
+  /home/claude/venv/lib/python3.13/site-packages/mongomock/helpers.py:73: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return datetime.utcnow()
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 49 passed, 282 warnings in 9.00s =======================

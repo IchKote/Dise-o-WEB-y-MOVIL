@@ -1,0 +1,39 @@
+sequenceDiagram
+  autonumber
+  actor C as Cliente (navegador)
+  participant G as API Gateway
+  participant A as Auth Service
+  participant O as orders
+  participant I as inventory
+  participant P as payments
+
+  C->>G: POST /api/orders (Bearer, Idempotency-Key)
+  G->>A: POST /internal/verify (X-Caller gateway)
+  A-->>G: user_id, rol
+  G->>O: POST / (X-Caller gateway, X-User-Id, X-User-Role)
+  O->>I: POST /internal/reservations (X-Caller orders)
+  alt hay stock
+    I-->>O: 201 nombre y precio vigentes
+    O->>O: calcula subtotal, descuento, envio y total
+    O-->>G: 201 pedido PENDIENTE_PAGO
+    G-->>C: 201
+  else stock insuficiente
+    I-->>O: 409 STOCK_INSUFICIENTE (sin descuento parcial)
+    O-->>C: 409 via gateway
+  end
+  C->>G: POST /api/orders/{id}/pay (metodo, token)
+  G->>O: POST /{id}/pay
+  O->>P: POST /internal/charges (monto = total del servidor)
+  alt aprobado
+    P-->>O: APROBADO, ref, firma
+    O->>O: PENDIENTE_PAGO a PAGADO
+    O-->>C: 200 PAGADO
+  else rechazado
+    P-->>O: RECHAZADO
+    O->>I: POST /internal/reservations/{id}/release
+    O->>O: PENDIENTE_PAGO a CANCELADO
+    O-->>C: 402
+  else payments no responde
+    P--xO: timeout o error
+    O-->>C: 502/504, pedido sigue PENDIENTE_PAGO (reintento seguro)
+  end

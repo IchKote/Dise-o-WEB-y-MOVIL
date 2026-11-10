@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+secrets.generated.json
+.env
+.pytest_cache/

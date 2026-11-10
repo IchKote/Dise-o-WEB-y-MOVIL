@@ -1,0 +1,70 @@
+/* Estilos generales y variables de diseño */
+body {
+    background-color: #010310;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Efectos de botones */
+.btn-efecto {
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-efecto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(35, 169, 189, 0.4) !important;
+    background-color: #8CE1EE !important;
+    color: #010310 !important;
+}
+
+/* Adaptabilidad de imágenes y tarjetas */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(35, 169, 189, 0.2) !important;
+}
+
+.card-producto {
+    cursor: pointer;
+}
+
+/* Cuadrícula asimétrica responsiva (Index) */
+.grid-hero-item {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-color: #010310;
+    width: 100%;
+}
+
+.grid-hero-item::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(1, 3, 16, 0.55);
+    z-index: 1;
+}
+
+.grid-hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.box-alta { min-height: 300px; }
+.box-mediana { min-height: 250px; }
+.box-baja { min-height: 200px; }
+
+@media (min-width: 768px) {
+    .box-alta { min-height: 420px; }
+    .box-mediana { min-height: 340px; }
+    .box-baja { min-height: 260px; }
+    .row-desigual { display: flex; align-items: stretch; }
+}

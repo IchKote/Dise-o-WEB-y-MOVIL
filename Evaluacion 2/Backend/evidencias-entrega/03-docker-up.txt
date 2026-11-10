@@ -1,0 +1,396 @@
+﻿ Image backend-clients Building 
+ Image backend-orders Building 
+ Image backend-graphql Building 
+ Image backend-payments Building 
+ Image backend-gateway Building 
+ Image backend-inventory Building 
+ Image backend-auth Building 
+ Image backend-vault-init Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 4.49kB 0.0s done
+#1 DONE 0.0s
+
+#2 [inventory internal] load build definition from Dockerfile
+#2 transferring dockerfile: 570B done
+#2 DONE 0.0s
+
+#3 [graphql internal] load build definition from Dockerfile
+#3 transferring dockerfile: 223B done
+#3 DONE 0.0s
+
+#4 [auth internal] load metadata for docker.io/library/python:3.13-slim
+#4 ...
+
+#5 [auth] library/node:pull token for registry-1.docker.io
+#5 DONE 0.0s
+
+#6 [auth] library/python:pull token for registry-1.docker.io
+#6 DONE 0.0s
+
+#7 [graphql internal] load metadata for docker.io/library/node:22-slim
+#7 DONE 1.2s
+
+#4 [auth internal] load metadata for docker.io/library/python:3.13-slim
+#4 DONE 1.3s
+
+#8 [graphql internal] load .dockerignore
+#8 transferring context: 58B done
+#8 DONE 0.0s
+
+#9 [auth internal] load .dockerignore
+#9 transferring context: 104B done
+#9 DONE 0.0s
+
+#10 [orders internal] load build context
+#10 DONE 0.0s
+
+#11 [graphql internal] load build context
+#11 transferring context: 363B done
+#11 DONE 0.1s
+
+#12 [orders 1/9] FROM docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+#12 resolve docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90
+#12 resolve docker.io/library/python:3.13-slim@sha256:e48f59cdba69a3cbd9ed2cf0f348d90d45a8d350d98134cf1070bc106ee9ed90 0.1s done
+#12 DONE 0.1s
+
+#13 [graphql 1/5] FROM docker.io/library/node:22-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d
+#13 resolve docker.io/library/node:22-slim@sha256:5ec23b7c622b00547753bc6ffd78085dd868a68aeb41c8e0a1418f033e13d96d 0.1s done
+#13 DONE 0.1s
+
+#14 [graphql 2/5] WORKDIR /app
+#14 CACHED
+
+#15 [graphql 3/5] COPY package.json package-lock.json ./
+#15 CACHED
+
+#16 [graphql 4/5] RUN npm ci --omit=dev
+#16 CACHED
+
+#17 [graphql 5/5] COPY src src
+#17 CACHED
+
+#10 [vault-init internal] load build context
+#10 transferring context: 21.50kB 0.0s done
+#10 DONE 0.1s
+
+#18 [auth 6/9] COPY services services
+#18 CACHED
+
+#19 [auth 4/9] RUN pip install --no-cache-dir -r requirements.txt
+#19 CACHED
+
+#20 [auth 5/9] COPY masala_common masala_common
+#20 CACHED
+
+#21 [auth 7/9] COPY gateway gateway
+#21 CACHED
+
+#22 [clients 6/9] COPY services services
+#22 CACHED
+
+#23 [clients 5/9] COPY masala_common masala_common
+#23 CACHED
+
+#24 [clients 4/9] RUN pip install --no-cache-dir -r requirements.txt
+#24 CACHED
+
+#25 [clients 7/9] COPY gateway gateway
+#25 CACHED
+
+#26 [payments 4/9] RUN pip install --no-cache-dir -r requirements.txt
+#26 CACHED
+
+#27 [payments 5/9] COPY masala_common masala_common
+#27 CACHED
+
+#28 [payments 6/9] COPY services services
+#28 CACHED
+
+#29 [payments 7/9] COPY gateway gateway
+#29 CACHED
+
+#30 [orders 4/9] RUN pip install --no-cache-dir -r requirements.txt
+#30 CACHED
+
+#31 [orders 6/9] COPY services services
+#31 CACHED
+
+#32 [orders 5/9] COPY masala_common masala_common
+#32 CACHED
+
+#33 [orders 7/9] COPY gateway gateway
+#33 CACHED
+
+#34 [inventory 6/9] COPY services services
+#34 CACHED
+
+#35 [inventory 5/9] COPY masala_common masala_common
+#35 CACHED
+
+#36 [inventory 4/9] RUN pip install --no-cache-dir -r requirements.txt
+#36 CACHED
+
+#37 [inventory 7/9] COPY gateway gateway
+#37 CACHED
+
+#38 [vault-init 4/9] RUN pip install --no-cache-dir -r requirements.txt
+#38 CACHED
+
+#39 [vault-init 5/9] COPY masala_common masala_common
+#39 CACHED
+
+#40 [orders 3/9] COPY requirements.txt .
+#40 CACHED
+
+#41 [orders 2/9] WORKDIR /app
+#41 CACHED
+
+#42 [vault-init 6/9] COPY services services
+#42 CACHED
+
+#43 [vault-init 7/9] COPY gateway gateway
+#43 CACHED
+
+#44 [graphql] exporting to image
+#44 exporting layers done
+#44 exporting manifest sha256:6107e3b95eb2791fe742b0861ab2d2e784342688563deef4833bf1c45a7f77db done
+#44 exporting config sha256:df84970d274e1fc614bcff02977357d1ed69d5434a9a5d84e1c70c919a57df26 done
+#44 exporting attestation manifest sha256:d4d14a7a2630832b8e1d32f1c7777449f4ae25939ede77434f42b6635a35d664 0.1s done
+#44 exporting manifest list sha256:e4987ff8906a8d749a50c2657536d0db854610c0fa7918fecec601639a928d2b
+#44 exporting manifest list sha256:e4987ff8906a8d749a50c2657536d0db854610c0fa7918fecec601639a928d2b 0.1s done
+#44 naming to docker.io/library/backend-graphql:latest
+#44 naming to docker.io/library/backend-graphql:latest done
+#44 unpacking to docker.io/library/backend-graphql:latest 0.0s done
+#44 DONE 0.4s
+
+#45 [orders 8/9] COPY scripts scripts
+#45 DONE 0.3s
+
+#46 [vault-init 8/9] COPY scripts scripts
+#46 ...
+
+#47 [payments 8/9] COPY scripts scripts
+#47 DONE 0.4s
+
+#48 [inventory 8/9] COPY scripts scripts
+#48 DONE 0.4s
+
+#49 [auth 8/9] COPY scripts scripts
+#49 DONE 0.4s
+
+#50 [clients 8/9] COPY scripts scripts
+#50 DONE 0.4s
+
+#46 [gateway 8/9] COPY scripts scripts
+#46 DONE 0.5s
+
+#51 [vault-init 9/9] RUN useradd --system --no-create-home app
+#51 ...
+
+#52 [graphql] resolving provenance for metadata file
+#52 DONE 0.0s
+
+#53 [orders 9/9] RUN useradd --system --no-create-home app
+#53 DONE 1.0s
+
+#54 [auth 9/9] RUN useradd --system --no-create-home app
+#54 ...
+
+#55 [payments 9/9] RUN useradd --system --no-create-home app
+#55 DONE 1.0s
+
+#56 [inventory 9/9] RUN useradd --system --no-create-home app
+#56 DONE 1.0s
+
+#57 [clients 9/9] RUN useradd --system --no-create-home app
+#57 DONE 1.0s
+
+#51 [gateway 9/9] RUN useradd --system --no-create-home app
+#51 DONE 1.1s
+
+#58 [vault-init] exporting to image
+#58 ...
+
+#54 [auth 9/9] RUN useradd --system --no-create-home app
+#54 DONE 1.4s
+
+#59 [auth] exporting to image
+#59 exporting layers 1.7s done
+#59 exporting manifest sha256:4ba3762be79e9aa5354bf2d83c2e4bcf4c4264453b53e09537c027c329d5e4a4
+#59 exporting manifest sha256:4ba3762be79e9aa5354bf2d83c2e4bcf4c4264453b53e09537c027c329d5e4a4 0.2s done
+#59 exporting config sha256:b3ad17a00654904082e8a78f369f6485ef4fd3b015fde603665d63b0cbcc56ef 0.1s done
+#59 exporting attestation manifest sha256:4d4de02216c985d7d58040452689ca4c469b30e7fd91faf2e84a253b606d65cf
+#59 exporting attestation manifest sha256:4d4de02216c985d7d58040452689ca4c469b30e7fd91faf2e84a253b606d65cf 0.2s done
+#59 exporting manifest list sha256:7b9aee9a906041743cf0c67e1ea788a694011ae89c8c57c2632707a7089c3bcb
+#59 exporting manifest list sha256:7b9aee9a906041743cf0c67e1ea788a694011ae89c8c57c2632707a7089c3bcb 0.1s done
+#59 naming to docker.io/library/backend-auth:latest
+#59 naming to docker.io/library/backend-auth:latest 0.0s done
+#59 unpacking to docker.io/library/backend-auth:latest
+#59 ...
+
+#60 [payments] exporting to image
+#60 exporting layers 1.5s done
+#60 exporting manifest sha256:ce73799ce33926b3d3ddc126d08e614a76c6c304f074b46f9a65daa4c8d336fa 0.2s done
+#60 exporting config sha256:06eb519bbbf6cfdd664afb4be2bf0360510e0af6f29783d6a1529693996b1423 0.2s done
+#60 exporting attestation manifest sha256:43f54a502343396d92e08dce2cc5e0ec15d505ece567db9621dfc1a0654f34bd 0.3s done
+#60 exporting manifest list sha256:b992f37a625dcd889ffb4a2900f5ce12c5293aceabf4c72f813dfb2636180e53 0.2s done
+#60 naming to docker.io/library/backend-payments:latest 0.1s done
+#60 unpacking to docker.io/library/backend-payments:latest 0.5s done
+#60 DONE 3.2s
+
+#61 [orders] exporting to image
+#61 exporting layers 1.6s done
+#61 exporting manifest sha256:48a9ad378159ba3249b90d9b786843d11953a7cf5f06abeb42f4985b47beec39 0.2s done
+#61 exporting config sha256:1b605a4ca6e8276630a242666b863dcb3475437b74065e56ad725fad755b6fbc 0.2s done
+#61 exporting attestation manifest sha256:6ab654278a92ee5875fd96df0b89cedcfa39dc8b3ccb4ffa60713f79ccc42651 0.3s done
+#61 exporting manifest list sha256:88cafaa6c2f11f23be70d72b49fa2c035ffe9f67429089185c9a466593884c1e 0.2s done
+#61 naming to docker.io/library/backend-orders:latest 0.1s done
+#61 unpacking to docker.io/library/backend-orders:latest 0.5s done
+#61 DONE 3.3s
+
+#62 [clients] exporting to image
+#62 exporting layers 1.5s done
+#62 exporting manifest sha256:96dc5a39907888ddf620987ca7603e21ee0b69e62849fcc8080d8e8193bc50b2 0.2s done
+#62 exporting config sha256:4ea7694d6dfb6db39b4b7201b6804de27b0d3bd8370ccb37dfd0d22015733c2f 0.2s done
+#62 exporting attestation manifest sha256:8604efa41835f11057f469a87a6a7ee9a7cd6ba11201e179efec1dc980d428eb 0.3s done
+#62 exporting manifest list sha256:57a982a9dff0c7d2f8301f2120fb670ac78991c0f10c79d731c3208be71aa45a 0.2s done
+#62 naming to docker.io/library/backend-clients:latest 0.1s done
+#62 unpacking to docker.io/library/backend-clients:latest 0.5s done
+#62 DONE 3.2s
+
+#63 [inventory] exporting to image
+#63 exporting layers 1.5s done
+#63 exporting manifest sha256:d39c051cd668418119a582eeb643c0a753dcbfcdac19d1057f167c7582e850b6 0.2s done
+#63 exporting config sha256:6fa6e57dc9ad2dcd9a5203522cac7720c07b581fd7e4919aabd220be712575b5 0.2s done
+#63 exporting attestation manifest sha256:598d4484615d5003919f276d3c10e0d8c8e3bf6f3ef28b59216d56ec6d0beeb6 0.3s done
+#63 exporting manifest list sha256:fd13922ba5faa1a049e7d2d3d55e670d7007a90700b31bd2175312b620d0bec5 0.2s done
+#63 naming to docker.io/library/backend-inventory:latest 0.1s done
+#63 unpacking to docker.io/library/backend-inventory:latest 0.5s done
+#63 DONE 3.2s
+
+#58 [vault-init] exporting to image
+#58 exporting layers 1.6s done
+#58 exporting manifest sha256:ee92bf0bae180730210abac0f80a00c38ecdd66e5a724c7721f4ff5b25514c76 0.2s done
+#58 exporting config sha256:338da5a9619f81a7fd9c8ae930fce06a263ccd5d0e2278f3bd628826851dfebe 0.2s done
+#58 exporting attestation manifest sha256:216c6a14f093c7888b6cb179a52536c6a4d7f6d32f76ec70fd6441e76bc075d8 0.3s done
+#58 exporting manifest list sha256:b1570c68ba96d31e9afb920bd6f35a171e231e76ff9cadbfed8528d83171e77a 0.2s done
+#58 naming to docker.io/library/backend-vault-init:latest 0.1s done
+#58 unpacking to docker.io/library/backend-vault-init:latest 0.4s done
+#58 DONE 3.3s
+
+#64 [gateway] exporting to image
+#64 exporting layers 1.6s done
+#64 exporting manifest sha256:1cbfc8fb91be28746f804ace6a4f83d6b31c47dc61bdf06ba998c3eb6ff5778a 0.3s done
+#64 exporting config sha256:9232730454eb012474193a78a2724c5cb604b934bb111f42398dd3492f02dca2 0.2s done
+#64 exporting attestation manifest sha256:637dfd8e2036c11dabece21a90f76063769608ecb5c150d83835029d0c522943 0.3s done
+#64 exporting manifest list sha256:f4792009a9df505f77e322304fb9d4ccae5a47d3199105b101b9825639dc5847 0.1s done
+#64 naming to docker.io/library/backend-gateway:latest 0.0s done
+#64 unpacking to docker.io/library/backend-gateway:latest 0.5s done
+#64 DONE 3.5s
+
+#59 [auth] exporting to image
+#59 unpacking to docker.io/library/backend-auth:latest 0.7s done
+#59 DONE 3.4s
+
+#65 [payments] resolving provenance for metadata file
+#65 DONE 0.2s
+
+#66 [inventory] resolving provenance for metadata file
+#66 DONE 0.5s
+
+#67 [clients] resolving provenance for metadata file
+#67 DONE 0.3s
+
+#68 [gateway] resolving provenance for metadata file
+#68 DONE 0.1s
+
+#69 [orders] resolving provenance for metadata file
+#69 DONE 0.6s
+
+#70 [vault-init] resolving provenance for metadata file
+#70 DONE 0.2s
+
+#71 [auth] resolving provenance for metadata file
+#71 DONE 0.0s
+ Image backend-graphql Built 
+ Image backend-clients Built 
+ Image backend-gateway Built 
+ Image backend-vault-init Built 
+ Image backend-payments Built 
+ Image backend-inventory Built 
+ Image backend-auth Built 
+ Image backend-orders Built 
+ Network backend_privada Creating 
+ Network backend_publica Creating 
+ Network backend_publica Creating 
+ Network backend_privada Creating 
+ Network backend_publica Created 
+ Network backend_publica Created 
+ Network backend_privada Created 
+ Network backend_privada Created 
+ Container backend-mongo-1 Creating 
+ Container backend-vault-1 Creating 
+ Container backend-mongo-1 Created 
+ Container backend-vault-1 Created 
+ Container backend-vault-init-1 Creating 
+ Container backend-vault-init-1 Created 
+ Container backend-orders-1 Creating 
+ Container backend-inventory-1 Creating 
+ Container backend-auth-1 Creating 
+ Container backend-payments-1 Creating 
+ Container backend-clients-1 Creating 
+ Container backend-orders-1 Created 
+ Container backend-graphql-1 Creating 
+ Container backend-auth-1 Created 
+ Container backend-inventory-1 Created 
+ Container backend-payments-1 Created 
+ Container backend-clients-1 Created 
+ Container backend-graphql-1 Created 
+ Container backend-gateway-1 Creating 
+ Container backend-gateway-1 Created 
+ Container backend-mongo-1 Starting 
+ Container backend-vault-1 Starting 
+ Container backend-mongo-1 Started 
+ Container backend-vault-1 Started 
+ Container backend-vault-1 Waiting 
+ Container backend-vault-1 Healthy 
+ Container backend-vault-init-1 Starting 
+ Container backend-vault-init-1 Started 
+ Container backend-vault-init-1 Waiting 
+ Container backend-mongo-1 Waiting 
+ Container backend-mongo-1 Waiting 
+ Container backend-vault-init-1 Waiting 
+ Container backend-mongo-1 Waiting 
+ Container backend-vault-init-1 Waiting 
+ Container backend-mongo-1 Waiting 
+ Container backend-vault-init-1 Waiting 
+ Container backend-mongo-1 Waiting 
+ Container backend-vault-init-1 Waiting 
+ Container backend-vault-init-1 Exited 
+ Container backend-vault-init-1 Exited 
+ Container backend-vault-init-1 Exited 
+ Container backend-vault-init-1 Exited 
+ Container backend-vault-init-1 Exited 
+ Container backend-mongo-1 Healthy 
+ Container backend-mongo-1 Healthy 
+ Container backend-payments-1 Starting 
+ Container backend-clients-1 Starting 
+ Container backend-mongo-1 Healthy 
+ Container backend-auth-1 Starting 
+ Container backend-mongo-1 Healthy 
+ Container backend-orders-1 Starting 
+ Container backend-mongo-1 Healthy 
+ Container backend-inventory-1 Starting 
+ Container backend-payments-1 Started 
+ Container backend-clients-1 Started 
+ Container backend-auth-1 Started 
+ Container backend-orders-1 Started 
+ Container backend-vault-init-1 Waiting 
+ Container backend-inventory-1 Started 
+ Container backend-vault-init-1 Exited 
+ Container backend-graphql-1 Starting 
+ Container backend-graphql-1 Started 
+ Container backend-vault-init-1 Waiting 
+ Container backend-vault-init-1 Exited 
+ Container backend-gateway-1 Starting 
+ Container backend-gateway-1 Started 

@@ -1,0 +1,38 @@
+flowchart LR
+  nav["Navegador<br/>Frontend estático (nginx :8080)"]
+
+  subgraph publica["Red publica (puertos publicados)"]
+    gw["API Gateway :8000<br/>rutas, token, roles, limites, CORS"]
+  end
+
+  subgraph privada["Red privada (sin puertos publicados)"]
+    auth["Auth Service<br/>cuentas, sesiones"]
+    gql["GraphQL Gateway<br/>agregaciones"]
+    clients["clients<br/>perfiles"]
+    inv["inventory<br/>catalogo, stock, reservas"]
+    ord["orders<br/>pedidos, estados"]
+    pay["payments<br/>cobros, comprobantes"]
+    vault[("Vault<br/>cada sistema lee solo su secreto")]
+    mongo[("MongoDB<br/>una base por servicio")]
+  end
+
+  nav -->|"HTTP /api/*"| gw
+  gw -->|"verificar token"| auth
+  gw --> clients
+  gw --> inv
+  gw --> ord
+  gw --> pay
+  gw -->|"POST /graphql"| gql
+  gql --> clients
+  gql --> inv
+  gql --> ord
+  gql --> pay
+  auth -->|"crear perfil"| clients
+  ord -->|"reservar y liberar stock"| inv
+  ord -->|"cobrar y reembolsar"| pay
+  auth -.-> mongo
+  clients -.-> mongo
+  inv -.-> mongo
+  ord -.-> mongo
+  pay -.-> mongo
+  gw -.->|"y los demas sistemas"| vault

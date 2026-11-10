@@ -1,0 +1,9 @@
+﻿NAME                  IMAGE               COMMAND                   SERVICE     CREATED          STATUS                    PORTS
+backend-auth-1        backend-auth        "sh -c 'if [ \"$SERVI…"   auth        45 seconds ago   Up 38 seconds             8000/tcp
+backend-clients-1     backend-clients     "sh -c 'if [ \"$SERVI…"   clients     45 seconds ago   Up 38 seconds             8000/tcp
+backend-gateway-1     backend-gateway     "sh -c 'if [ \"$SERVI…"   gateway     45 seconds ago   Up 36 seconds             0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp
+backend-graphql-1     backend-graphql     "docker-entrypoint.s…"    graphql     45 seconds ago   Up 36 seconds             8100/tcp
+backend-inventory-1   backend-inventory   "sh -c 'if [ \"$SERVI…"   inventory   45 seconds ago   Up 37 seconds             8000/tcp
+backend-mongo-1       mongo:7             "docker-entrypoint.s…"    mongo       45 seconds ago   Up 44 seconds (healthy)   27017/tcp
+backend-orders-1      backend-orders      "sh -c 'if [ \"$SERVI…"   orders      45 seconds ago   Up Less than a second     8000/tcp
+backend-payments-1    backend-payments    "sh -c 'if [ \"$SERVI…"   payments    45 seconds ago   Up 37 seconds             8000/tcp
